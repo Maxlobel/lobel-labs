@@ -2,9 +2,12 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Lightbulb } from "lucide-react";
 import lightbulbHero from "@/assets/lightbulb-hero.jpg";
 import { useRef, useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const HeroSection = () => {
+  const isMobile = useIsMobile();
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const [mobileGlow, setMobileGlow] = useState({ x: 0, y: 0, active: false });
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -17,6 +20,19 @@ const HeroSection = () => {
     }
   };
 
+  // Mobile touch handlers
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (sectionRef.current && e.touches.length > 0) {
+      const rect = sectionRef.current.getBoundingClientRect();
+      setMobileGlow({
+        x: e.touches[0].clientX - rect.left,
+        y: e.touches[0].clientY - rect.top,
+        active: true,
+      });
+    }
+  };
+  const handleTouchEnd = () => setMobileGlow((g) => ({ ...g, active: false }));
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -27,19 +43,38 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      onMouseMove={handleMouseMove}
+      onMouseMove={!isMobile ? handleMouseMove : undefined}
+      onTouchMove={isMobile ? handleTouchMove : undefined}
+      onTouchEnd={isMobile ? handleTouchEnd : undefined}
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
-      {/* Mouse-following glow */}
-      <div
-        style={{
-          left: mouse.x - 100,
-          top: mouse.y - 100,
-          opacity: 0.85,
-          pointerEvents: "none",
-        }}
-        className="pointer-events-none fixed z-0 w-[200px] h-[200px] rounded-full bg-primary/80 blur-2xl"
-      />
+      {/* Mouse-following glow (desktop) */}
+      {!isMobile && (
+        <div
+          style={{
+            left: mouse.x - 100,
+            top: mouse.y - 100,
+            opacity: 0.85,
+            pointerEvents: "none",
+          }}
+          className="pointer-events-none fixed z-0 w-[200px] h-[200px] rounded-full bg-primary/80 blur-2xl"
+        />
+      )}
+      {/* Finger-following dynamic glow (mobile) */}
+      {isMobile && mobileGlow.active && (
+        <div
+          style={{
+            left: mobileGlow.x - 60,
+            top: mobileGlow.y - 60,
+            opacity: 0.7,
+            pointerEvents: "none",
+            transition: 'opacity 0.15s, width 0.15s, height 0.15s',
+            width: mobileGlow.active ? 120 : 80,
+            height: mobileGlow.active ? 120 : 80,
+          }}
+          className="pointer-events-none fixed z-0 rounded-full bg-primary/70 blur-xl"
+        />
+      )}
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background/90 to-primary/5"></div>
       
