@@ -140,24 +140,6 @@ const ServicesSection = () => {
               ))}
             </div>
           </div>
-
-          {/* CTA Section */}
-          <div className="text-center space-y-6 p-8 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl border border-border/50">
-            <h3 className="text-2xl font-bold">Ready to Transform Your Business?</h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Let's discuss how AI automation and data insights can accelerate your growth. 
-              Book a free 30-minute discovery call to explore the possibilities.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="btn-hero text-lg px-8 py-6">
-                <Users className="mr-2" size={20} />
-                Book Free Discovery Call
-              </Button>
-              <Button size="lg" variant="outline" className="btn-secondary text-lg px-8 py-6">
-                View Case Studies
-              </Button>
-            </div>
-          </div>
         </div>
       </div>
     </section>
