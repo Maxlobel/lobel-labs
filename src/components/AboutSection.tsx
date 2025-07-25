@@ -115,3 +115,74 @@ const AboutSection = () => {
 };
 
 export default AboutSection;
+
+// Tools & Technologies Section
+export const ToolsTechnologiesSection = () => (
+  <section className="py-16 bg-gradient-to-b from-background/80 to-background">
+    <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
+      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+        Tools & Technologies
+      </h2>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Core Data & Analytics Tools */}
+        <div>
+          <h3 className="font-semibold mb-4 flex items-center gap-2">⚙️ Core Data & Analytics</h3>
+          <ul className="space-y-2 text-muted-foreground">
+            <li>SQL (PostgreSQL, MySQL, BigQuery, Snowflake)</li>
+            <li>Python (Pandas, NumPy, Jupyter, scikit-learn, Flask)</li>
+            <li>Tableau / Power BI / Domo</li>
+            <li>Excel / Google Sheets (Advanced functions, VBA, macros)</li>
+          </ul>
+        </div>
+        {/* AI & Automation */}
+        <div>
+          <h3 className="font-semibold mb-4 flex items-center gap-2">🧠 AI & Automation</h3>
+          <ul className="space-y-2 text-muted-foreground">
+            <li>OpenAI API / GPT-4 / Claude</li>
+            <li>Make.com / Zapier / n8n (no-code automation)</li>
+            <li>LangChain / LlamaIndex / Pinecone (for LLM agents)</li>
+            <li>Hugging Face Transformers</li>
+          </ul>
+        </div>
+        {/* Engineering & Dev Tools */}
+        <div>
+          <h3 className="font-semibold mb-4 flex items-center gap-2">🛠️ Engineering & Dev Tools</h3>
+          <ul className="space-y-2 text-muted-foreground">
+            <li>Git / GitHub</li>
+            <li>VSCode / JupyterLab</li>
+            <li>Docker</li>
+            <li>REST API design & testing (Postman, Swagger)</li>
+          </ul>
+        </div>
+        {/* Web & App Dev */}
+        <div>
+          <h3 className="font-semibold mb-4 flex items-center gap-2">🖥️ Web & App Dev</h3>
+          <ul className="space-y-2 text-muted-foreground">
+            <li>JavaScript / HTML / CSS / React</li>
+            <li>Tailwind CSS</li>
+            <li>Vercel / Netlify / Replit / Render</li>
+          </ul>
+        </div>
+        {/* Cloud & Data Platforms */}
+        <div>
+          <h3 className="font-semibold mb-4 flex items-center gap-2">📊 Cloud & Data Platforms</h3>
+          <ul className="space-y-2 text-muted-foreground">
+            <li>Palantir Foundry</li>
+            <li>AWS (S3, Lambda, etc.)</li>
+            <li>Firebase / Supabase</li>
+          </ul>
+        </div>
+        {/* Bonus Skills */}
+        <div>
+          <h3 className="font-semibold mb-4 flex items-center gap-2">🧩 Bonus Skills</h3>
+          <ul className="space-y-2 text-muted-foreground">
+            <li>Salesforce / CRM platforms</li>
+            <li>SEO tools (Google Analytics, Tag Manager, Search Console)</li>
+            <li>Scripting (PowerShell, Bash)</li>
+            <li>Chatbot or agent development (Telegram bots, Slack integrations)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+);
