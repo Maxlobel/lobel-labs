@@ -1,8 +1,22 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Lightbulb } from "lucide-react";
 import lightbulbHero from "@/assets/lightbulb-hero.jpg";
+import { useRef, useState } from "react";
 
 const HeroSection = () => {
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (sectionRef.current) {
+      const rect = sectionRef.current.getBoundingClientRect();
+      setMouse({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    }
+  };
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -11,7 +25,21 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      onMouseMove={handleMouseMove}
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+    >
+      {/* Mouse-following glow */}
+      <div
+        style={{
+          left: mouse.x - 150,
+          top: mouse.y - 150,
+          opacity: 0.5,
+          pointerEvents: "none",
+        }}
+        className="pointer-events-none fixed z-0 w-[300px] h-[300px] rounded-full bg-primary/30 blur-3xl transition-all duration-200"
+      />
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background/90 to-primary/5"></div>
       
