@@ -4,54 +4,97 @@ import lightbulbHero from "@/assets/lightbulb-hero.jpg";
 import { useRef, useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-const HeroSection = () => {
+export const GlobalGlow = () => {
   const isMobile = useIsMobile();
-  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const [mouse, setMouse] = useState({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
   const [mobileGlow, setMobileGlow] = useState({ x: 0, y: 0, active: false });
-  const sectionRef = useRef<HTMLDivElement>(null);
 
-  // Subtle thumb-following glow on scroll for mobile
+  // Desktop: follow mouse globally
+  useEffect(() => {
+    if (isMobile) return;
+    const handleMouseMove = (e: MouseEvent) => {
+      setMouse({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [isMobile]);
+
+  // Mobile: follow thumb on scroll
   useEffect(() => {
     if (!isMobile) return;
     const handleScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        // Place the glow near the right edge, about 80% width (right-handed thumb)
+      setMobileGlow({
+        x: window.innerWidth * 0.8,
+        y: window.scrollY + window.innerHeight * 0.8,
+        active: true,
+      });
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMobile]);
+
+  // Mobile: follow touch
+  useEffect(() => {
+    if (!isMobile) return;
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
         setMobileGlow({
-          x: rect.width * 0.8,
-          y: window.scrollY + window.innerHeight * 0.8 - rect.top,
+          x: e.touches[0].clientX,
+          y: e.touches[0].clientY,
           active: true,
         });
       }
     };
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // initialize
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handleTouchEnd = () => setMobileGlow((g) => ({ ...g, active: false }));
+    window.addEventListener("touchmove", handleTouchMove);
+    window.addEventListener("touchend", handleTouchEnd);
+    return () => {
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
+    };
   }, [isMobile]);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (sectionRef.current) {
-      const rect = sectionRef.current.getBoundingClientRect();
-      setMouse({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      });
-    }
-  };
+  return (
+    <>
+      {/* Desktop Glow */}
+      {!isMobile && (
+        <div
+          style={{
+            left: mouse.x - 100,
+            top: mouse.y - 100,
+            opacity: 0.85,
+            pointerEvents: "none",
+            position: "fixed",
+            width: 200,
+            height: 200,
+            zIndex: 0,
+          }}
+          className="pointer-events-none rounded-full bg-primary/80 blur-2xl"
+        />
+      )}
+      {/* Mobile Glow */}
+      {isMobile && mobileGlow.active && (
+        <div
+          style={{
+            left: mobileGlow.x - 60,
+            top: mobileGlow.y - 60,
+            opacity: 0.5,
+            pointerEvents: "none",
+            position: "fixed",
+            width: 120,
+            height: 120,
+            zIndex: 0,
+            transition: 'opacity 0.2s, width 0.2s, height 0.2s, top 0.2s, left 0.2s',
+          }}
+          className="pointer-events-none rounded-full bg-primary/60 blur-xl"
+        />
+      )}
+    </>
+  );
+};
 
-  // Mobile touch handlers (still allow dynamic on touch)
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (sectionRef.current && e.touches.length > 0) {
-      const rect = sectionRef.current.getBoundingClientRect();
-      setMobileGlow({
-        x: e.touches[0].clientX - rect.left,
-        y: e.touches[0].clientY - rect.top,
-        active: true,
-      });
-    }
-  };
-  const handleTouchEnd = () => setMobileGlow((g) => ({ ...g, active: false }));
-
+const HeroSection = () => {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -60,49 +103,14 @@ const HeroSection = () => {
   };
 
   return (
-    <section
-      ref={sectionRef}
-      onMouseMove={!isMobile ? handleMouseMove : undefined}
-      onTouchMove={isMobile ? handleTouchMove : undefined}
-      onTouchEnd={isMobile ? handleTouchEnd : undefined}
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
-    >
-      {/* Mouse-following glow (desktop) */}
-      {!isMobile && (
-        <div
-          style={{
-            left: mouse.x - 100,
-            top: mouse.y - 100,
-            opacity: 0.85,
-            pointerEvents: "none",
-          }}
-          className="pointer-events-none fixed z-0 w-[200px] h-[200px] rounded-full bg-primary/80 blur-2xl"
-        />
-      )}
-      {/* Finger-following dynamic glow (mobile) */}
-      {isMobile && mobileGlow.active && (
-        <div
-          style={{
-            left: mobileGlow.x - 60,
-            top: mobileGlow.y - 60,
-            opacity: 0.5,
-            pointerEvents: "none",
-            transition: 'opacity 0.2s, width 0.2s, height 0.2s, top 0.2s, left 0.2s',
-            width: 120,
-            height: 120,
-          }}
-          className="pointer-events-none fixed z-0 rounded-full bg-primary/60 blur-xl"
-        />
-      )}
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background/90 to-primary/5"></div>
-      
       {/* Animated background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
-
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="text-center space-y-8">
           {/* Lightbulb Animation */}
@@ -115,7 +123,6 @@ const HeroSection = () => {
               <div className="absolute inset-0 bg-secondary/20 rounded-full blur-xl pointer-events-none"></div>
             </div>
           </div>
-
           {/* Main Heading */}
           <div className="space-y-4">
             <h1 className="text-6xl md:text-8xl font-bold tracking-tight">
@@ -129,7 +136,6 @@ const HeroSection = () => {
               <span className="text-secondary font-semibold">creative firepower</span>.
             </p>
           </div>
-
           {/* Call-to-Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12">
             <Button 
@@ -149,7 +155,6 @@ const HeroSection = () => {
               Book a Call
             </Button>
           </div>
-
           {/* Secondary CTAs */}
           <div className="flex flex-wrap gap-4 justify-center mt-8">
             <Button 
@@ -162,7 +167,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
         <div className="w-6 h-10 border-2 border-primary/30 rounded-full flex justify-center">
