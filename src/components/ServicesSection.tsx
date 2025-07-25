@@ -72,6 +72,7 @@ const ServicesSection = () => {
       const { data, error } = await supabase
         .from("notes")
         .select("id, content, created_at")
+        .eq("approved", true)
         .order("created_at", { ascending: false });
       if (!error) setNotes(data || []);
       setLoading(false);
@@ -190,6 +191,7 @@ const ServicesSection = () => {
                   const { data } = await supabase
                     .from("notes")
                     .select("id, content, created_at")
+                    .eq("approved", true)
                     .order("created_at", { ascending: false });
                   setNotes(data || []);
                 }}
