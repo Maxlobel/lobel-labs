@@ -167,8 +167,8 @@ const ServicesSection = () => {
             </div>
 
             {/* Leave a Note Section */}
-            <div className="mt-8 max-w-md mx-auto bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-4">
-              <h4 className="text-lg font-semibold mb-2 text-center">Leave a Note About Max</h4>
+            <div className="mt-8 max-w-xs mx-auto bg-card/40 backdrop-blur-sm border border-border/30 rounded-lg p-2">
+              <h4 className="text-base font-semibold mb-1 text-center">Leave a Note About Max</h4>
               <form
                 onSubmit={async e => {
                   e.preventDefault();
@@ -193,16 +193,16 @@ const ServicesSection = () => {
                     .order("created_at", { ascending: false });
                   setNotes(data || []);
                 }}
-                className="space-y-2"
+                className="space-y-1"
               >
                 <textarea
-                  className="w-full rounded-md border border-border/50 bg-muted/20 p-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary"
-                  rows={2}
-                  placeholder="Share a quick note about Max..."
+                  className="w-full rounded border border-border/30 bg-muted/10 p-1 text-xs resize-none focus:outline-none focus:ring-1 focus:ring-primary"
+                  rows={1}
+                  placeholder="Quick note..."
                   value={note}
                   onChange={e => setNote(e.target.value)}
                 />
-                <Button type="submit" className="w-full btn-hero text-base py-2">
+                <Button type="submit" className="w-full btn-hero text-xs py-1">
                   Submit
                 </Button>
               </form>
