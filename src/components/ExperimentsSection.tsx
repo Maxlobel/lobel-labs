@@ -2,8 +2,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Lightbulb, ThumbsUp, MessageSquare, Zap, Beaker, Rocket, Brain, Code2 } from "lucide-react";
+import { useState } from "react";
 
 const ExperimentsSection = () => {
+  const [open, setOpen] = useState(false);
   const experiments = [
     {
       title: "AI Voice Podcast Generator",
@@ -97,7 +99,7 @@ const ExperimentsSection = () => {
           </div>
 
           {/* Intro Card */}
-          <Card className="mb-12 bg-gradient-to-r from-secondary/10 to-primary/10 border border-border/50">
+          <Card className="mb-8 bg-gradient-to-r from-secondary/10 to-primary/10 border border-border/50">
             <CardContent className="p-8 text-center">
               <Lightbulb className="w-12 h-12 text-secondary mx-auto mb-4" />
               <h3 className="text-2xl font-bold mb-4">Welcome to My Lab</h3>
@@ -105,99 +107,99 @@ const ExperimentsSection = () => {
                 This is where ideas come to life. Vote on concepts you'd like to see built, 
                 leave feedback, or just follow along as I experiment with the future of technology.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="btn-secondary">
-                  <MessageSquare className="mr-2" size={16} />
-                  Join the Discussion
-                </Button>
-                <Button variant="outline" className="border-border/50">
-                  Subscribe to Updates
-                </Button>
-              </div>
+              <Button
+                variant="outline"
+                className="mx-auto mt-4 px-8 py-3 text-lg border-primary/30 hover:bg-primary/10"
+                onClick={() => setOpen((v) => !v)}
+                aria-expanded={open}
+              >
+                {open ? "Hide Experiments" : "Show Experiments & Ideas"}
+              </Button>
             </CardContent>
           </Card>
 
-          {/* Experiments Grid */}
-          <div className="grid md:grid-cols-2 gap-6 mb-12">
-            {experiments.map((experiment, index) => (
-              <Card key={index} className="project-card group">
-                <CardHeader className="space-y-4">
-                  <div className="flex items-start justify-between">
-                    <div className="bg-secondary/20 text-secondary w-12 h-12 rounded-lg flex items-center justify-center">
-                      <experiment.icon size={24} />
-                    </div>
-                    <div className="flex flex-col items-end gap-2">
-                      <Badge className={getStatusColor(experiment.status)}>
-                        {experiment.status}
-                      </Badge>
-                      <div className="flex items-center gap-1">
-                        <ThumbsUp size={14} className="text-muted-foreground" />
-                        <span className="text-sm text-muted-foreground">{experiment.votes}</span>
+          {/* Collapsible Experiments Grid and CTA */}
+          {open && (
+            <>
+              {/* Experiments Grid */}
+              <div className="grid md:grid-cols-2 gap-6 mb-12">
+                {experiments.map((experiment, index) => (
+                  <Card key={index} className="project-card group">
+                    <CardHeader className="space-y-4">
+                      <div className="flex items-start justify-between">
+                        <div className="bg-secondary/20 text-secondary w-12 h-12 rounded-lg flex items-center justify-center">
+                          <experiment.icon size={24} />
+                        </div>
+                        <div className="flex flex-col items-end gap-2">
+                          <Badge className={getStatusColor(experiment.status)}>
+                            {experiment.status}
+                          </Badge>
+                          <div className="flex items-center gap-1">
+                            <ThumbsUp size={14} className="text-muted-foreground" />
+                            <span className="text-sm text-muted-foreground">{experiment.votes}</span>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <CardTitle className="text-xl mb-2 group-hover:text-secondary transition-colors">
-                      {experiment.title}
-                    </CardTitle>
-                    <CardDescription className="text-muted-foreground leading-relaxed">
-                      {experiment.description}
-                    </CardDescription>
-                  </div>
-                </CardHeader>
-
-                <CardContent className="space-y-4">
-                  {/* Metadata */}
-                  <div className="flex items-center justify-between text-sm">
-                    <Badge variant="outline" className="bg-muted/30 border-border/50">
-                      {experiment.category}
-                    </Badge>
-                    <span className={`font-medium ${getDifficultyColor(experiment.difficulty)}`}>
-                      {experiment.difficulty}
-                    </span>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-2 pt-2">
-                    <Button 
-                      size="sm" 
-                      className="flex-1 bg-secondary/10 hover:bg-secondary/20 text-secondary border-secondary/30"
-                    >
-                      <ThumbsUp size={14} className="mr-2" />
-                      Vote
-                    </Button>
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
-                      className="bg-muted/20 border-border/50 hover:bg-muted/30"
-                    >
-                      <MessageSquare size={14} className="mr-2" />
-                      Discuss
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* Community CTA */}
-          <div className="text-center space-y-6 p-8 bg-gradient-to-r from-secondary/10 to-primary/10 rounded-2xl border border-border/50">
-            <h3 className="text-2xl font-bold">Have Your Own Idea?</h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              I'm always looking for interesting problems to solve and creative projects to collaborate on. 
-              Share your ideas or join me in building the future.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="btn-secondary text-lg px-8 py-6">
-                <Lightbulb className="mr-2" size={20} />
-                Submit an Idea
-              </Button>
-              <Button size="lg" variant="outline" className="border-border/50 text-lg px-8 py-6">
-                Collaborate with Me
-              </Button>
-            </div>
-          </div>
+                      <div>
+                        <CardTitle className="text-xl mb-2 group-hover:text-secondary transition-colors">
+                          {experiment.title}
+                        </CardTitle>
+                        <CardDescription className="text-muted-foreground leading-relaxed">
+                          {experiment.description}
+                        </CardDescription>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      {/* Metadata */}
+                      <div className="flex items-center justify-between text-sm">
+                        <Badge variant="outline" className="bg-muted/30 border-border/50">
+                          {experiment.category}
+                        </Badge>
+                        <span className={`font-medium ${getDifficultyColor(experiment.difficulty)}`}>
+                          {experiment.difficulty}
+                        </span>
+                      </div>
+                      {/* Action Buttons */}
+                      <div className="flex gap-2 pt-2">
+                        <Button 
+                          size="sm" 
+                          className="flex-1 bg-secondary/10 hover:bg-secondary/20 text-secondary border-secondary/30"
+                        >
+                          <ThumbsUp size={14} className="mr-2" />
+                          Vote
+                        </Button>
+                        <Button 
+                          size="sm" 
+                          variant="outline" 
+                          className="bg-muted/20 border-border/50 hover:bg-muted/30"
+                        >
+                          <MessageSquare size={14} className="mr-2" />
+                          Discuss
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+              {/* Community CTA */}
+              <div className="text-center space-y-6 p-8 bg-gradient-to-r from-secondary/10 to-primary/10 rounded-2xl border border-border/50">
+                <h3 className="text-2xl font-bold">Have Your Own Idea?</h3>
+                <p className="text-muted-foreground max-w-2xl mx-auto">
+                  I'm always looking for interesting problems to solve and creative projects to collaborate on. 
+                  Share your ideas or join me in building the future.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button size="lg" className="btn-secondary text-lg px-8 py-6">
+                    <Lightbulb className="mr-2" size={20} />
+                    Submit an Idea
+                  </Button>
+                  <Button size="lg" variant="outline" className="border-border/50 text-lg px-8 py-6">
+                    Collaborate with Me
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>
