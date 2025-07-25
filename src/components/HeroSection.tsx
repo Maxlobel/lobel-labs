@@ -135,7 +135,7 @@ export const WhyHireMeSection = () => (
         </li>
         <li className="flex items-start gap-3">
           <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-secondary/10 text-secondary font-bold text-xl">🎯</span>
-          <span>Strategic thinker with real business impact (<a href="#" className="underline text-primary hover:text-primary/80">see case study</a>)</span>
+          <span>Strategic thinker with real business impact</span>
         </li>
         <li className="flex items-start gap-3">
           <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold text-xl">💬</span>
