@@ -58,23 +58,6 @@ const Footer = () => {
               ))}
             </div>
           </div>
-
-          {/* Newsletter Signup */}
-          <div className="space-y-4">
-            <h4 className="font-semibold text-foreground">Join My Inner Circle</h4>
-            <p className="text-sm text-muted-foreground">
-              Get exclusive updates on experiments, startup ideas, and AI insights.
-            </p>
-            <div className="space-y-2">
-              <Input 
-                placeholder="your@email.com" 
-                className="bg-muted/30 border-border/50"
-              />
-              <Button className="w-full btn-secondary">
-                Subscribe
-              </Button>
-            </div>
-          </div>
         </div>
 
         {/* Bottom Bar */}

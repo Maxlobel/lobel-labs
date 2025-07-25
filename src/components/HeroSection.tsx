@@ -105,13 +105,6 @@ const HeroSection = () => {
             >
               Hire Me
             </Button>
-            <Button 
-              variant="ghost" 
-              className="text-muted-foreground hover:text-secondary transition-colors"
-              onClick={() => scrollToSection("#experiments")}
-            >
-              Join My Experiments
-            </Button>
           </div>
         </div>
       </div>
