@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Lightbulb } from "lucide-react";
 import lightbulbHero from "@/assets/lightbulb-hero.jpg";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const HeroSection = () => {
@@ -9,6 +9,25 @@ const HeroSection = () => {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
   const [mobileGlow, setMobileGlow] = useState({ x: 0, y: 0, active: false });
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  // Subtle thumb-following glow on scroll for mobile
+  useEffect(() => {
+    if (!isMobile) return;
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        // Place the glow near the right edge, about 80% width (right-handed thumb)
+        setMobileGlow({
+          x: rect.width * 0.8,
+          y: window.scrollY + window.innerHeight * 0.8 - rect.top,
+          active: true,
+        });
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // initialize
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMobile]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (sectionRef.current) {
@@ -20,7 +39,7 @@ const HeroSection = () => {
     }
   };
 
-  // Mobile touch handlers
+  // Mobile touch handlers (still allow dynamic on touch)
   const handleTouchMove = (e: React.TouchEvent) => {
     if (sectionRef.current && e.touches.length > 0) {
       const rect = sectionRef.current.getBoundingClientRect();
@@ -66,13 +85,13 @@ const HeroSection = () => {
           style={{
             left: mobileGlow.x - 60,
             top: mobileGlow.y - 60,
-            opacity: 0.7,
+            opacity: 0.5,
             pointerEvents: "none",
-            transition: 'opacity 0.15s, width 0.15s, height 0.15s',
-            width: mobileGlow.active ? 120 : 80,
-            height: mobileGlow.active ? 120 : 80,
+            transition: 'opacity 0.2s, width 0.2s, height 0.2s, top 0.2s, left 0.2s',
+            width: 120,
+            height: 120,
           }}
-          className="pointer-events-none fixed z-0 rounded-full bg-primary/70 blur-xl"
+          className="pointer-events-none fixed z-0 rounded-full bg-primary/60 blur-xl"
         />
       )}
       {/* Background gradient */}
