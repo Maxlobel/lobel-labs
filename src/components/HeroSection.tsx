@@ -63,14 +63,14 @@ export const GlobalGlow = () => {
           style={{
             left: mouse.x - 100,
             top: mouse.y - 100,
-            opacity: 0.85,
+            opacity: 0.25,
             pointerEvents: "none",
             position: "fixed",
             width: 200,
             height: 200,
             zIndex: 0,
           }}
-          className="pointer-events-none rounded-full bg-primary/80 blur-2xl"
+          className="pointer-events-none rounded-full bg-primary/30 blur-xl"
         />
       )}
       {/* Mobile Glow */}
@@ -79,7 +79,7 @@ export const GlobalGlow = () => {
           style={{
             left: mobileGlow.x - 60,
             top: mobileGlow.y - 60,
-            opacity: 0.5,
+            opacity: 0.18,
             pointerEvents: "none",
             position: "fixed",
             width: 120,
@@ -87,7 +87,7 @@ export const GlobalGlow = () => {
             zIndex: 0,
             transition: 'opacity 0.2s, width 0.2s, height 0.2s, top 0.2s, left 0.2s',
           }}
-          className="pointer-events-none rounded-full bg-primary/60 blur-xl"
+          className="pointer-events-none rounded-full bg-primary/20 blur"
         />
       )}
     </>
