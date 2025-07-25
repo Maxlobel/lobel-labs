@@ -150,28 +150,6 @@ const ContactSection = () => {
 
             {/* Contact Info & Social */}
             <div className="space-y-6">
-              {/* Response Times */}
-              <Card className="bg-gradient-to-br from-secondary/10 to-primary/10 border border-border/50">
-                <CardHeader>
-                  <CardTitle className="text-xl">Response Times</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {categories.map((category, index) => (
-                    <div key={index} className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <category.icon size={16} className="text-muted-foreground" />
-                        <span className="text-sm text-foreground">{category.label}</span>
-                      </div>
-                      <Badge className={category.color}>
-                        {category.value === 'recruiter' ? '< 4 hours' :
-                         category.value === 'client' ? '< 2 hours' :
-                         category.value === 'collaborator' ? '< 6 hours' : '< 24 hours'}
-                      </Badge>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-
               {/* Location & Availability */}
               <Card className="bg-card/50 backdrop-blur-sm border border-border/50">
                 <CardHeader>
