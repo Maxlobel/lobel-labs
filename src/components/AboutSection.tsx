@@ -110,7 +110,6 @@ export const ToolsTechnologiesSection = () => (
       </h2>
       {/* Key Tools Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-10 justify-items-center">
-        {/* Use emoji or generic icons for now, swap for SVGs later */}
         <div className="flex flex-col items-center">
           <span className="text-5xl mb-2">🐍</span>
           <span className="text-lg font-medium">Python</span>
@@ -120,7 +119,7 @@ export const ToolsTechnologiesSection = () => (
           <span className="text-lg font-medium">SQL</span>
         </div>
         <div className="flex flex-col items-center">
-          <span className="text-5xl mb-2">🧠</span>
+          <span className="text-5xl mb-2">🤖</span>
           <span className="text-lg font-medium">GPT-4</span>
         </div>
         <div className="flex flex-col items-center">
@@ -129,7 +128,7 @@ export const ToolsTechnologiesSection = () => (
         </div>
         <div className="flex flex-col items-center">
           <span className="text-5xl mb-2">☁️</span>
-          <span className="text-lg font-medium">Vercel</span>
+          <span className="text-lg font-medium">AWS</span>
         </div>
         <div className="flex flex-col items-center">
           <span className="text-5xl mb-2">📊</span>
@@ -147,7 +146,7 @@ export const ToolsTechnologiesSection = () => (
       {/* Categorized List of All Tools */}
       <div className="grid md:grid-cols-2 gap-8">
         <div>
-          <h3 className="font-semibold mb-2 flex items-center gap-2">Data & Analytics</h3>
+          <h3 className="font-semibold mb-2 flex items-center gap-2">🔍 Data & Analytics</h3>
           <div className="flex flex-wrap gap-2 text-muted-foreground">
             <span className="badge">SQL</span>
             <span className="badge">BigQuery</span>
@@ -161,10 +160,11 @@ export const ToolsTechnologiesSection = () => (
             <span className="badge">NumPy</span>
             <span className="badge">Jupyter</span>
             <span className="badge">scikit-learn</span>
+            <span className="badge">dbt</span>
           </div>
         </div>
         <div>
-          <h3 className="font-semibold mb-2 flex items-center gap-2">AI & Automation</h3>
+          <h3 className="font-semibold mb-2 flex items-center gap-2">🤖 AI & Automation</h3>
           <div className="flex flex-wrap gap-2 text-muted-foreground">
             <span className="badge">OpenAI API</span>
             <span className="badge">GPT-4</span>
@@ -176,11 +176,12 @@ export const ToolsTechnologiesSection = () => (
             <span className="badge">LlamaIndex</span>
             <span className="badge">Pinecone</span>
             <span className="badge">Hugging Face</span>
+            <span className="badge">Vertex AI</span>
             <span className="badge">Automation</span>
           </div>
         </div>
         <div>
-          <h3 className="font-semibold mb-2 flex items-center gap-2">Web & App Dev</h3>
+          <h3 className="font-semibold mb-2 flex items-center gap-2">🌐 Web & App Development</h3>
           <div className="flex flex-wrap gap-2 text-muted-foreground">
             <span className="badge">JavaScript</span>
             <span className="badge">HTML</span>
@@ -192,19 +193,23 @@ export const ToolsTechnologiesSection = () => (
             <span className="badge">Netlify</span>
             <span className="badge">Replit</span>
             <span className="badge">Render</span>
+            <span className="badge">Next.js</span>
+            <span className="badge">Node.js</span>
           </div>
         </div>
         <div>
-          <h3 className="font-semibold mb-2 flex items-center gap-2">Cloud & Data Platforms</h3>
+          <h3 className="font-semibold mb-2 flex items-center gap-2">☁️ Cloud & Data Platforms</h3>
           <div className="flex flex-wrap gap-2 text-muted-foreground">
             <span className="badge">Supabase</span>
             <span className="badge">Palantir Foundry</span>
             <span className="badge">AWS</span>
             <span className="badge">Firebase</span>
+            <span className="badge">GCP</span>
+            <span className="badge">Azure</span>
           </div>
         </div>
         <div>
-          <h3 className="font-semibold mb-2 flex items-center gap-2">Dev & Productivity Tools</h3>
+          <h3 className="font-semibold mb-2 flex items-center gap-2">🛠️ Dev & Productivity Tools</h3>
           <div className="flex flex-wrap gap-2 text-muted-foreground">
             <span className="badge">Git</span>
             <span className="badge">GitHub</span>
@@ -213,10 +218,12 @@ export const ToolsTechnologiesSection = () => (
             <span className="badge">Docker</span>
             <span className="badge">Postman</span>
             <span className="badge">Swagger</span>
+            <span className="badge">Figma</span>
+            <span className="badge">Notion</span>
           </div>
         </div>
         <div>
-          <h3 className="font-semibold mb-2 flex items-center gap-2">Bonus Skills</h3>
+          <h3 className="font-semibold mb-2 flex items-center gap-2">🧠 Bonus Skills</h3>
           <div className="flex flex-wrap gap-2 text-muted-foreground">
             <span className="badge">Salesforce</span>
             <span className="badge">CRM</span>
@@ -226,9 +233,11 @@ export const ToolsTechnologiesSection = () => (
             <span className="badge">Search Console</span>
             <span className="badge">PowerShell</span>
             <span className="badge">Bash</span>
-            <span className="badge">Chatbot Dev</span>
+            <span className="badge">Chatbot Development</span>
             <span className="badge">Telegram Bots</span>
             <span className="badge">Slack Integrations</span>
+            <span className="badge">Airtable</span>
+            <span className="badge">Webflow</span>
           </div>
         </div>
       </div>
