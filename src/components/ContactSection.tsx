@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { Mail, Linkedin, Send, Users, Briefcase, Heart, DollarSign, MapPin, Calendar } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/lib/supabase";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -26,11 +27,16 @@ const ContactSection = () => {
   const quickLinks = [
     { label: "Schedule a Call", icon: Calendar, href: "#", primary: true },
     { label: "Email Me", icon: Mail, href: "mailto:max@example.com" },
-    { label: "LinkedIn", icon: Linkedin, href: "#" },
+    { label: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/maxlobel" },
     { label: "Boston Meetup", icon: MapPin, href: "#" }
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Log site action utility
+  const logSiteAction = async (action_type, details) => {
+    await supabase.from("site_actions").insert([{ action_type, details }]);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.name || !formData.email || !formData.category || !formData.message) {
@@ -38,7 +44,22 @@ const ContactSection = () => {
       return;
     }
     
-    // Here you would typically send the form data to your backend
+    // Store in Supabase
+    const { error } = await supabase.from("contact_submissions").insert([
+      {
+        name: formData.name,
+        email: formData.email,
+        category: formData.category,
+        message: formData.message,
+      },
+    ]);
+    if (error) {
+      toast.error("Failed to submit. Please try again.");
+      return;
+    }
+    // Log the action
+    logSiteAction("contact_form", { ...formData });
+    
     toast.success("Message sent! I'll get back to you within 24 hours.");
     
     // Reset form
