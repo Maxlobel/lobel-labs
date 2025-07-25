@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 
 const Footer = () => {
   const socialLinks = [
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/maxlobel", label: "LinkedIn" },
     { icon: Github, href: "#", label: "GitHub" },
     { icon: Instagram, href: "#", label: "Instagram" },
     { icon: Mail, href: "mailto:max@example.com", label: "Email" }
