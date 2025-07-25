@@ -145,7 +145,7 @@ const ServicesSection = () => {
           {/* Testimonials */}
           <div className="space-y-8 mb-12">
             <h3 className="text-2xl font-bold text-center">
-              What <span className="text-gradient-secondary">Clients</span> Say
+              What <span className="text-gradient-secondary">Clients</span> and Coworkers Say
             </h3>
             
             <div className="grid md:grid-cols-2 gap-6">
