@@ -62,23 +62,6 @@ const ServicesSection = () => {
   ];
 
   const [note, setNote] = useState("");
-  const [notes, setNotes] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  // Fetch notes on mount
-  useEffect(() => {
-    const fetchNotes = async () => {
-      setLoading(true);
-      const { data, error } = await supabase
-        .from("notes")
-        .select("id, content, created_at")
-        .eq("approved", true)
-        .order("created_at", { ascending: false });
-      if (!error) setNotes(data || []);
-      setLoading(false);
-    };
-    fetchNotes();
-  }, []);
 
   // Log site action utility
   const logSiteAction = async (action_type, details) => {
@@ -187,13 +170,6 @@ const ServicesSection = () => {
                   logSiteAction("note_submitted", { content: note });
                   toast.success("Thank you for your note!");
                   setNote("");
-                  // Refetch notes
-                  const { data } = await supabase
-                    .from("notes")
-                    .select("id, content, created_at")
-                    .eq("approved", true)
-                    .order("created_at", { ascending: false });
-                  setNotes(data || []);
                 }}
                 className="space-y-1"
               >
@@ -209,24 +185,7 @@ const ServicesSection = () => {
                 </Button>
               </form>
             </div>
-            {/* Display all notes */}
-            <div className="mt-8">
-              <h5 className="font-semibold mb-2 text-center">Recent Notes</h5>
-              {loading ? (
-                <div className="text-center text-muted-foreground">Loading...</div>
-              ) : notes.length === 0 ? (
-                <div className="text-center text-muted-foreground">No notes yet. Be the first!</div>
-              ) : (
-                <ul className="space-y-3">
-                  {notes.map((n) => (
-                    <li key={n.id} className="bg-muted/30 border border-border/30 rounded-lg px-4 py-3 text-base text-muted-foreground">
-                      <span className="block mb-1">{n.content}</span>
-                      <span className="block text-xs text-muted-foreground/70">{new Date(n.created_at).toLocaleString()}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
+
           </div>
         </div>
       </div>
