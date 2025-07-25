@@ -2,6 +2,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Bot, BarChart3, Rocket, Users, ArrowRight, CheckCircle } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 
 const ServicesSection = () => {
   const services = [
@@ -57,6 +59,8 @@ const ServicesSection = () => {
       company: "DataFlow Solutions"
     }
   ];
+
+  const [note, setNote] = useState("");
 
   return (
     <section id="services" className="py-20 bg-gradient-to-b from-background to-primary/5">
@@ -138,6 +142,34 @@ const ServicesSection = () => {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+
+            {/* Leave a Note Section */}
+            <div className="mt-12 max-w-xl mx-auto bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8">
+              <h4 className="text-xl font-bold mb-4 text-center">Leave a Note About Max</h4>
+              <form
+                onSubmit={e => {
+                  e.preventDefault();
+                  if (!note.trim()) {
+                    toast.error("Please enter a note before submitting.");
+                    return;
+                  }
+                  toast.success("Thank you for your note!");
+                  setNote("");
+                }}
+                className="space-y-4"
+              >
+                <textarea
+                  className="w-full rounded-lg border border-border/50 bg-muted/20 p-3 text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary"
+                  rows={4}
+                  placeholder="Share your experience or thoughts about working with Max..."
+                  value={note}
+                  onChange={e => setNote(e.target.value)}
+                />
+                <Button type="submit" className="w-full btn-hero text-lg py-3">
+                  Submit Note
+                </Button>
+              </form>
             </div>
           </div>
         </div>
