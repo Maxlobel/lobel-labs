@@ -2,8 +2,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Bot, BarChart3, Rocket, Users, ArrowRight, CheckCircle } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
+import { supabase } from "@/lib/supabase";
 
 const ServicesSection = () => {
   const services = [
@@ -61,6 +62,27 @@ const ServicesSection = () => {
   ];
 
   const [note, setNote] = useState("");
+  const [notes, setNotes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch notes on mount
+  useEffect(() => {
+    const fetchNotes = async () => {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from("notes")
+        .select("id, content, created_at")
+        .order("created_at", { ascending: false });
+      if (!error) setNotes(data || []);
+      setLoading(false);
+    };
+    fetchNotes();
+  }, []);
+
+  // Log site action utility
+  const logSiteAction = async (action_type, details) => {
+    await supabase.from("site_actions").insert([{ action_type, details }]);
+  };
 
   return (
     <section id="services" className="py-20 bg-gradient-to-b from-background to-primary/5">
@@ -145,31 +167,63 @@ const ServicesSection = () => {
             </div>
 
             {/* Leave a Note Section */}
-            <div className="mt-12 max-w-xl mx-auto bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8">
-              <h4 className="text-xl font-bold mb-4 text-center">Leave a Note About Max</h4>
+            <div className="mt-8 max-w-md mx-auto bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-4">
+              <h4 className="text-lg font-semibold mb-2 text-center">Leave a Note About Max</h4>
               <form
-                onSubmit={e => {
+                onSubmit={async e => {
                   e.preventDefault();
                   if (!note.trim()) {
                     toast.error("Please enter a note before submitting.");
                     return;
                   }
+                  // Insert note into Supabase
+                  const { error } = await supabase.from("notes").insert([{ content: note }]);
+                  if (error) {
+                    toast.error("Failed to submit note. Please try again.");
+                    return;
+                  }
+                  // Log the action
+                  logSiteAction("note_submitted", { content: note });
                   toast.success("Thank you for your note!");
                   setNote("");
+                  // Refetch notes
+                  const { data } = await supabase
+                    .from("notes")
+                    .select("id, content, created_at")
+                    .order("created_at", { ascending: false });
+                  setNotes(data || []);
                 }}
-                className="space-y-4"
+                className="space-y-2"
               >
                 <textarea
-                  className="w-full rounded-lg border border-border/50 bg-muted/20 p-3 text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary"
-                  rows={4}
-                  placeholder="Share your experience or thoughts about working with Max..."
+                  className="w-full rounded-md border border-border/50 bg-muted/20 p-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary"
+                  rows={2}
+                  placeholder="Share a quick note about Max..."
                   value={note}
                   onChange={e => setNote(e.target.value)}
                 />
-                <Button type="submit" className="w-full btn-hero text-lg py-3">
-                  Submit Note
+                <Button type="submit" className="w-full btn-hero text-base py-2">
+                  Submit
                 </Button>
               </form>
+            </div>
+            {/* Display all notes */}
+            <div className="mt-8">
+              <h5 className="font-semibold mb-2 text-center">Recent Notes</h5>
+              {loading ? (
+                <div className="text-center text-muted-foreground">Loading...</div>
+              ) : notes.length === 0 ? (
+                <div className="text-center text-muted-foreground">No notes yet. Be the first!</div>
+              ) : (
+                <ul className="space-y-3">
+                  {notes.map((n) => (
+                    <li key={n.id} className="bg-muted/30 border border-border/30 rounded-lg px-4 py-3 text-base text-muted-foreground">
+                      <span className="block mb-1">{n.content}</span>
+                      <span className="block text-xs text-muted-foreground/70">{new Date(n.created_at).toLocaleString()}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
         </div>
