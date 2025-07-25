@@ -15,8 +15,7 @@ const ServicesSection = () => {
         "Integration with existing systems",
         "Performance monitoring & optimization"
       ],
-      color: "primary",
-      price: "Starting at $2,500"
+      color: "primary"
     },
     {
       title: "Dashboard Building & Data Consulting",
@@ -28,8 +27,7 @@ const ServicesSection = () => {
         "SQL query optimization",
         "Business intelligence strategy"
       ],
-      color: "secondary",
-      price: "Starting at $1,500"
+      color: "secondary"
     },
     {
       title: "Startup Launch Support",
@@ -41,8 +39,7 @@ const ServicesSection = () => {
         "Go-to-market strategy",
         "Fundraising preparation"
       ],
-      color: "primary",
-      price: "Custom pricing"
+      color: "primary"
     }
   ];
 
@@ -107,9 +104,8 @@ const ServicesSection = () => {
                     ))}
                   </div>
 
-                  {/* Pricing */}
+                  {/* Pricing - removed */}
                   <div className="pt-4 border-t border-border/50">
-                    <p className="font-semibold text-foreground mb-3">{service.price}</p>
                     <Button className="w-full btn-hero">
                       Get Started
                       <ArrowRight size={16} className="ml-2" />
