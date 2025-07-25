@@ -70,6 +70,28 @@ const ContactSection = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  // Fun Fact logic
+  const funFacts = [
+    "I built my first AI project before graduating college.",
+    "I’ve automated over 1,000 hours of manual work for clients.",
+    "I’m a published data storyteller and dashboard designer.",
+    "I’ve worked with Fortune 500 companies and fast-growing startups.",
+    "I’m passionate about using AI to solve real business problems.",
+    "I’ve led analytics projects in healthcare, SaaS, and marketing.",
+    "I love teaching teams how to use data for smarter decisions.",
+    "I’ve built and launched 10+ side projects in the last 2 years.",
+    "I’m a certified Google Analytics and Tableau professional.",
+    "I’ve mentored junior analysts and engineers to career growth."
+  ];
+  const [funFact, setFunFact] = useState(funFacts[0]);
+  const regenerateFact = () => {
+    let newFact;
+    do {
+      newFact = funFacts[Math.floor(Math.random() * funFacts.length)];
+    } while (newFact === funFact && funFacts.length > 1);
+    setFunFact(newFact);
+  };
+
   return (
     <section id="contact" className="py-20 bg-gradient-to-b from-background to-primary/5">
       <div className="container mx-auto px-4 lg:px-8">
@@ -196,10 +218,12 @@ const ContactSection = () => {
               <Card className="bg-gradient-to-br from-primary/10 to-secondary/10 border border-border/50">
                 <CardContent className="p-6 text-center">
                   <h4 className="font-semibold mb-2">Fun Fact</h4>
-                  <p className="text-sm text-muted-foreground">
-                    I'm always down to chat about sushi recommendations, startup ideas, 
-                    or the latest AI developments over coffee ☕
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {funFact}
                   </p>
+                  <Button size="sm" variant="outline" className="mx-auto" onClick={regenerateFact}>
+                    Regenerate Fact
+                  </Button>
                 </CardContent>
               </Card>
             </div>
