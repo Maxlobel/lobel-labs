@@ -181,6 +181,35 @@ const ExperimentsSection = () => {
                   </Card>
                 ))}
               </div>
+
+              {/* Comprehensive List of Max Lobel's Business & Project Ideas */}
+              <div className="mb-12 p-6 bg-muted/20 rounded-2xl border border-border/30">
+                <h4 className="text-xl font-bold mb-4 text-center">Comprehensive List of Max Lobel's Business & Project Ideas</h4>
+                <ul className="space-y-3 text-base text-muted-foreground list-disc list-inside">
+                  <li><b>AI Job Application Agent:</b> Automates job search: scrapes jobs, tailors resumes and cover letters, applies, follows up, prepares for interviews. Built with Telegram, Make.com, GPT, Google Sheets.</li>
+                  <li><b>AI-Powered Executive Assistant for Professionals:</b> Custom AI assistants for execs to manage scheduling, communication, research, and follow-ups. Started by offering to family and network.</li>
+                  <li><b>Sushi Restaurant in South Boston:</b> Focus on fresh seafood, omakase-inspired, intimate setting. Includes personalized feedback, loyalty program, and possible integration with local fishermen.</li>
+                  <li><b>AI Casting and Video Production Platform (Boston.tv):</b> Enables actors, artists, and directors to create AI-generated video content. Brand includes other city-based domains.</li>
+                  <li><b>Mobile Bar App:</b> Allows users to pre-order and prepay for drinks at bars, with real-time updates and optional table delivery. Includes a bartender dashboard.</li>
+                  <li><b>AI Media Company:</b> Empowers creators to turn text prompts into videos using AI. Includes short film breakdowns, scripting, shot lists, and video generation.</li>
+                  <li><b>Fishing Content Brand (Boston-based):</b> Monetizes fishing via content, sponsorships, and events. Ties into local identity and could use AI for content or gamified experiences.</li>
+                  <li><b>Geek Squad 2.0 / Tech Handyman Business:</b> Local, on-call tech help for setup, data analysis, Wi-Fi issues, smart home, etc.</li>
+                  <li><b>Health & Wellness Shot Company:</b> Sells wellness shots and gummies made with natural ingredients. Potential bar collabs as healthy mixers. Merch line included.</li>
+                  <li><b>Sauna / Cold Plunge Speakeasy:</b> Hidden wellness experience in Boston: cold plunge, sauna, speakeasy bar for recovery and socializing.</li>
+                  <li><b>Restaurant Concept: Live Chef Battles:</b> Restaurant where chefs compete live using mystery ingredients. Patrons vote; multiple tiers of experience (in-person, remote). NFT tickets and social content monetization.</li>
+                  <li><b>Polling Analytics Business:</b> Uses AI to reimagine polling, bypassing traditional methods and echo chambers. Could work for political, brand, or market research.</li>
+                  <li><b>AI Consulting Firm:</b> Provides custom AI solutions and education to individuals and businesses. Focus on automation, workflow optimization, and productivity tools.</li>
+                  <li><b>Memory Preservation Business:</b> Uses video and audio tech to document family stories, memories, and legacies. Possibly AI-enhanced with indexing and summarization.</li>
+                  <li><b>Restaurant at the Top of Loon Mountain:</b> Fine dining experience accessible by gondola. Targets influencers and wealthy guests with events or performances.</li>
+                  <li><b>Skiing-Based Side Business:</b> Still early-stage. Possibly rentals, tours, or content related to skiing.</li>
+                  <li><b>Battle Station Desk Rental:</b> Beach house attic outfitted as a rentable workstation with plug-and-play desk, Wi-Fi, monitors, AC. Targeted at vacationers working remotely.</li>
+                  <li><b>Sourdough GPT / Food Content:</b> AI persona focused on sourdough bread baking and education. Could be spun into broader cooking/recipe AI brand.</li>
+                  <li><b>Streaming Expense Tracker for Families:</b> Google Form-based tool to prevent streaming service overlap across families. Could expand to other digital expense tracking.</li>
+                  <li><b>Weekly Sports Betting Tracker:</b> Tracks bets, win percentages, and pot distribution across friend group parlays.</li>
+                  <li><b>Fortnite Xbox Fix Guide / Support:</b> Explored Xbox issues with multiple accounts. Could be a niche content piece or tool.</li>
+                  <li><b>AI Video Generator Agent (Make.com + Video Gen):</b> From short film prompt to script to shot breakdown to auto-generated scenes. Built on Telegram and AI video tools.</li>
+                </ul>
+              </div>
               {/* Community CTA */}
               <div className="text-center space-y-6 p-8 bg-gradient-to-r from-secondary/10 to-primary/10 rounded-2xl border border-border/50">
                 <h3 className="text-2xl font-bold">Have Your Own Idea?</h3>
