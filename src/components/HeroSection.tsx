@@ -157,13 +157,7 @@ const HeroSection = () => {
           </div>
           {/* Secondary CTAs */}
           <div className="flex flex-wrap gap-4 justify-center mt-8">
-            <Button 
-              variant="ghost" 
-              className="text-muted-foreground hover:text-primary transition-colors"
-              onClick={() => scrollToSection("#services")}
-            >
-              Hire Me
-            </Button>
+            {/* Removed Hire Me button */}
           </div>
         </div>
       </div>
