@@ -91,22 +91,6 @@ const AboutSection = () => {
                   ))}
                 </div>
               </div>
-
-              {/* Tools & Technologies */}
-              <div className="space-y-3">
-                <h4 className="font-semibold text-foreground">Tools & Technologies</h4>
-                <div className="flex flex-wrap gap-2">
-                  {tools.map((tool, index) => (
-                    <Badge 
-                      key={index} 
-                      variant="secondary" 
-                      className="bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary/20 transition-colors"
-                    >
-                      {tool}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </div>
