@@ -120,3 +120,32 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
+// Why Teams Hire Me Section
+export const WhyHireMeSection = () => (
+  <section className="py-16 bg-gradient-to-b from-primary/5 to-background">
+    <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
+      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+        Why Teams Hire Me
+      </h2>
+      <ul className="space-y-6 text-lg">
+        <li className="flex items-start gap-3">
+          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold text-xl">⚡</span>
+          <span>SQL, Python, Tableau, PowerBi, Domo, Palantir – <span className="font-semibold">technical firepower</span></span>
+        </li>
+        <li className="flex items-start gap-3">
+          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-secondary/10 text-secondary font-bold text-xl">🎯</span>
+          <span>Strategic thinker with real business impact (<a href="#" className="underline text-primary hover:text-primary/80">see case study</a>)</span>
+        </li>
+        <li className="flex items-start gap-3">
+          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold text-xl">💬</span>
+          <span>Excellent communicator and team player</span>
+        </li>
+        <li className="flex items-start gap-3">
+          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-secondary/10 text-secondary font-bold text-xl">🏥</span>
+          <span>Experienced in healthcare, marketing, and SaaS analytics</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+);
