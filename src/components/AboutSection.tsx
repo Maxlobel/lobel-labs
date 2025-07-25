@@ -117,42 +117,137 @@ const AboutSection = () => {
 
 export default AboutSection;
 
-// Tools & Technologies Section
-export const ToolsTechnologiesSection = () => {
-  const [open, setOpen] = useState(false);
-  return (
-    <section className="py-16 bg-gradient-to-b from-background/80 to-background">
-      <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
-        <button
-          className="w-full flex items-center justify-between px-6 py-4 rounded-lg bg-secondary/10 hover:bg-secondary/20 transition-colors text-2xl md:text-3xl font-bold mb-4 focus:outline-none"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-        >
-          Tools & Technologies
-          <span className={`ml-2 transition-transform ${open ? 'rotate-90' : ''}`}>▶</span>
-        </button>
-        {open && (
-          <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            {[
-              "SQL",
-              "Python",
-              "GPT",
-              "Make.com",
-              "Tailwind",
-              "GitHub",
-              "Foundry",
-              "BigQuery",
-              "React",
-              "TypeScript",
-              "Automation",
-            ].map((tool) => (
-              <div key={tool} className="px-4 py-2 rounded-lg bg-muted/30 text-muted-foreground text-lg font-medium text-center border border-border/30">
-                {tool}
-              </div>
-            ))}
-          </div>
-        )}
+// ToolsGrid Section
+export const ToolsTechnologiesSection = () => (
+  <section className="py-16 bg-gradient-to-b from-background/80 to-background">
+    <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
+      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+        Technical Stack & Tools
+      </h2>
+      {/* Key Tools Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-10 justify-items-center">
+        {/* Use emoji or generic icons for now, swap for SVGs later */}
+        <div className="flex flex-col items-center">
+          <span className="text-5xl mb-2">🐍</span>
+          <span className="text-lg font-medium">Python</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-5xl mb-2">🟦</span>
+          <span className="text-lg font-medium">SQL</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-5xl mb-2">🧠</span>
+          <span className="text-lg font-medium">GPT-4</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-5xl mb-2">⚡</span>
+          <span className="text-lg font-medium">Supabase</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-5xl mb-2">☁️</span>
+          <span className="text-lg font-medium">Vercel</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-5xl mb-2">📊</span>
+          <span className="text-lg font-medium">Tableau</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-5xl mb-2">⚛️</span>
+          <span className="text-lg font-medium">React</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-5xl mb-2">🎨</span>
+          <span className="text-lg font-medium">Tailwind</span>
+        </div>
       </div>
-    </section>
-  );
-};
+      {/* Categorized List of All Tools */}
+      <div className="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 className="font-semibold mb-2 flex items-center gap-2">Data & Analytics</h3>
+          <div className="flex flex-wrap gap-2 text-muted-foreground">
+            <span className="badge">SQL</span>
+            <span className="badge">BigQuery</span>
+            <span className="badge">Snowflake</span>
+            <span className="badge">Tableau</span>
+            <span className="badge">Power BI</span>
+            <span className="badge">Domo</span>
+            <span className="badge">Excel</span>
+            <span className="badge">Google Sheets</span>
+            <span className="badge">Pandas</span>
+            <span className="badge">NumPy</span>
+            <span className="badge">Jupyter</span>
+            <span className="badge">scikit-learn</span>
+          </div>
+        </div>
+        <div>
+          <h3 className="font-semibold mb-2 flex items-center gap-2">AI & Automation</h3>
+          <div className="flex flex-wrap gap-2 text-muted-foreground">
+            <span className="badge">OpenAI API</span>
+            <span className="badge">GPT-4</span>
+            <span className="badge">Claude</span>
+            <span className="badge">Make.com</span>
+            <span className="badge">Zapier</span>
+            <span className="badge">n8n</span>
+            <span className="badge">LangChain</span>
+            <span className="badge">LlamaIndex</span>
+            <span className="badge">Pinecone</span>
+            <span className="badge">Hugging Face</span>
+            <span className="badge">Automation</span>
+          </div>
+        </div>
+        <div>
+          <h3 className="font-semibold mb-2 flex items-center gap-2">Web & App Dev</h3>
+          <div className="flex flex-wrap gap-2 text-muted-foreground">
+            <span className="badge">JavaScript</span>
+            <span className="badge">HTML</span>
+            <span className="badge">CSS</span>
+            <span className="badge">React</span>
+            <span className="badge">TypeScript</span>
+            <span className="badge">Tailwind CSS</span>
+            <span className="badge">Vercel</span>
+            <span className="badge">Netlify</span>
+            <span className="badge">Replit</span>
+            <span className="badge">Render</span>
+          </div>
+        </div>
+        <div>
+          <h3 className="font-semibold mb-2 flex items-center gap-2">Cloud & Data Platforms</h3>
+          <div className="flex flex-wrap gap-2 text-muted-foreground">
+            <span className="badge">Supabase</span>
+            <span className="badge">Palantir Foundry</span>
+            <span className="badge">AWS</span>
+            <span className="badge">Firebase</span>
+          </div>
+        </div>
+        <div>
+          <h3 className="font-semibold mb-2 flex items-center gap-2">Dev & Productivity Tools</h3>
+          <div className="flex flex-wrap gap-2 text-muted-foreground">
+            <span className="badge">Git</span>
+            <span className="badge">GitHub</span>
+            <span className="badge">VSCode</span>
+            <span className="badge">JupyterLab</span>
+            <span className="badge">Docker</span>
+            <span className="badge">Postman</span>
+            <span className="badge">Swagger</span>
+          </div>
+        </div>
+        <div>
+          <h3 className="font-semibold mb-2 flex items-center gap-2">Bonus Skills</h3>
+          <div className="flex flex-wrap gap-2 text-muted-foreground">
+            <span className="badge">Salesforce</span>
+            <span className="badge">CRM</span>
+            <span className="badge">SEO</span>
+            <span className="badge">Google Analytics</span>
+            <span className="badge">Tag Manager</span>
+            <span className="badge">Search Console</span>
+            <span className="badge">PowerShell</span>
+            <span className="badge">Bash</span>
+            <span className="badge">Chatbot Dev</span>
+            <span className="badge">Telegram Bots</span>
+            <span className="badge">Slack Integrations</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);

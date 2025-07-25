@@ -140,4 +140,8 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  .badge {
+    @apply inline-block px-3 py-1 rounded-full bg-muted/20 border border-border/30 text-sm font-medium;
+  }
 }
