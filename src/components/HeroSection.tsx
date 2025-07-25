@@ -26,12 +26,11 @@ const HeroSection = () => {
           {/* Lightbulb Animation */}
           <div className="flex justify-center mb-8">
             <div className="relative">
-              <img 
-                src={lightbulbHero} 
-                alt="Innovation Lightbulb" 
-                className="w-32 h-32 object-contain lightbulb-glow"
+              <Lightbulb 
+                className="w-32 h-32 text-yellow-400 lightbulb-apple-glow" 
+                strokeWidth={1.5}
               />
-              <div className="absolute inset-0 bg-secondary/20 rounded-full blur-xl animate-pulse"></div>
+              <div className="absolute inset-0 bg-secondary/20 rounded-full blur-xl pointer-events-none"></div>
             </div>
           </div>
 
