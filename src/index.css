@@ -79,7 +79,11 @@
 
   /* Project card effects */
   .project-card {
-    @apply transition-all duration-300 hover:scale-105 hover:shadow-elegant cursor-pointer bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/30;
+    @apply transition-all duration-300 hover:scale-105 cursor-pointer bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/30;
+  }
+  
+  .project-card:hover {
+    box-shadow: var(--shadow-elegant);
   }
 
   /* Glow effects */
