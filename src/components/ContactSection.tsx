@@ -17,6 +17,10 @@ const ContactSection = () => {
     message: ""
   });
   const [showMeetupOptions, setShowMeetupOptions] = useState(false);
+  const [meetupFormData, setMeetupFormData] = useState({
+    name: "",
+    phone: ""
+  });
 
   const categories = [
     { value: "recruiter", label: "Recruiter", icon: Briefcase, color: "bg-blue-500/20 text-blue-400" },
@@ -73,16 +77,27 @@ const ContactSection = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  const handleMeetupClose = () => {
+    setShowMeetupOptions(false);
+    setMeetupFormData({ name: "", phone: "" });
+  };
+
   const handleMeetupSelection = async (choice: string) => {
+    // Validate form data
+    if (!meetupFormData.name.trim() || !meetupFormData.phone.trim()) {
+      toast.error("Please fill in your name and phone number");
+      return;
+    }
+    
     setShowMeetupOptions(false);
     
     try {
       // Create a contact submission with meetup details
       const meetupSubmission = {
-        name: "Boston Meetup Request",
-        email: "meetup-request@placeholder.com", // Placeholder email
+        name: meetupFormData.name,
+        email: `${meetupFormData.phone}@phone-contact.com`, // Use phone as email identifier
         category: choice, // "coffee" or "beer"
-        message: `Someone requested a ${choice} meetup through the Boston Meetup option. Browser: ${navigator.userAgent?.substring(0, 100) || 'Unknown'}. Referrer: ${document.referrer || 'Direct visit'}.`
+        message: `${choice.charAt(0).toUpperCase() + choice.slice(1)} meetup request from ${meetupFormData.name}. Phone: ${meetupFormData.phone}. Browser: ${navigator.userAgent?.substring(0, 100) || 'Unknown'}. Referrer: ${document.referrer || 'Direct visit'}.`
       };
       
       // Store in the existing contact_submissions table
@@ -93,12 +108,19 @@ const ContactSection = () => {
       }
       
       // Log as a site action
-      await logSiteAction("meetup_request", { meetup_type: choice });
+      await logSiteAction("meetup_request", { 
+        meetup_type: choice, 
+        name: meetupFormData.name, 
+        phone: meetupFormData.phone 
+      });
+      
+      // Clear form data
+      setMeetupFormData({ name: "", phone: "" });
       
       if (choice === 'coffee') {
-        toast.success(`Coffee meetup selected! I'll reach out to schedule.`);
+        toast.success(`Thanks ${meetupFormData.name}! Coffee meetup request submitted. I'll call you soon!`);
       } else if (choice === 'beer') {
-        toast.success(`Beer meetup selected! I'll reach out to schedule.`);
+        toast.success(`Thanks ${meetupFormData.name}! Beer meetup request submitted. I'll call you soon!`);
       }
     } catch (error) {
       console.error('Error logging meetup request:', error);
@@ -176,8 +198,35 @@ const ContactSection = () => {
               <div className="bg-card rounded-lg p-8 max-w-md w-full mx-4 border border-border/50">
                 <h3 className="text-2xl font-bold mb-4 text-center">Boston Meetup</h3>
                 <p className="text-muted-foreground mb-6 text-center">
-                  Let's grab a drink! What's your preference?
+                  Let's grab a drink! First, I'll need your contact info.
                 </p>
+                
+                {/* Contact Form */}
+                <div className="space-y-4 mb-6">
+                  <div>
+                    <label className="text-sm font-medium text-foreground block mb-2">Your Name</label>
+                    <Input
+                      placeholder="Enter your name"
+                      value={meetupFormData.name}
+                      onChange={(e) => setMeetupFormData(prev => ({ ...prev, name: e.target.value }))}
+                      className="bg-muted/30 border-border/50"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-foreground block mb-2">Phone Number</label>
+                    <Input
+                      placeholder="Enter your phone number"
+                      value={meetupFormData.phone}
+                      onChange={(e) => setMeetupFormData(prev => ({ ...prev, phone: e.target.value }))}
+                      className="bg-muted/30 border-border/50"
+                    />
+                  </div>
+                </div>
+
+                <p className="text-sm text-muted-foreground mb-4 text-center">
+                  What's your preference?
+                </p>
+                
                 <div className="flex gap-4">
                   <button
                     onClick={() => handleMeetupSelection('coffee')}
@@ -193,7 +242,7 @@ const ContactSection = () => {
                   </button>
                 </div>
                 <button
-                  onClick={() => setShowMeetupOptions(false)}
+                  onClick={handleMeetupClose}
                   className="w-full mt-4 text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Cancel
