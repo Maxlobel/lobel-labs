@@ -71,16 +71,35 @@ const ContactSection = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleMeetupSelection = (choice: string) => {
+  const handleMeetupSelection = async (choice: string) => {
     setShowMeetupOptions(false);
-    if (choice === 'coffee') {
-      // For now, just show a success message - you can update this URL later
-      toast.success(`Coffee meetup selected! I'll reach out to schedule.`);
-      // window.open('https://calendly.com/maxlobel/coffee-chat', '_blank', 'noopener,noreferrer');
-    } else if (choice === 'beer') {
-      // For now, just show a success message - you can update this URL later
-      toast.success(`Beer meetup selected! I'll reach out to schedule.`);
-      // window.open('https://calendly.com/maxlobel/beer-meetup', '_blank', 'noopener,noreferrer');
+    
+    // Log the meetup selection to Supabase
+    const meetupData = {
+      meetup_type: choice,
+      timestamp: new Date().toISOString(),
+      user_agent: navigator.userAgent,
+      referrer: document.referrer || 'direct'
+    };
+    
+    try {
+      // Store in Supabase - this will notify you
+      await supabase.from("meetup_requests").insert([meetupData]);
+      
+      // Also log as a site action
+      await logSiteAction("meetup_request", meetupData);
+      
+      if (choice === 'coffee') {
+        toast.success(`Coffee meetup selected! I'll reach out to schedule.`);
+        // window.open('https://calendly.com/maxlobel/coffee-chat', '_blank', 'noopener,noreferrer');
+      } else if (choice === 'beer') {
+        toast.success(`Beer meetup selected! I'll reach out to schedule.`);
+        // window.open('https://calendly.com/maxlobel/beer-meetup', '_blank', 'noopener,noreferrer');
+      }
+    } catch (error) {
+      console.error('Error logging meetup request:', error);
+      // Still show success message to user
+      toast.success(`${choice === 'coffee' ? 'Coffee' : 'Beer'} meetup selected! I'll reach out to schedule.`);
     }
   };
 
