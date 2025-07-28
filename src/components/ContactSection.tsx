@@ -16,6 +16,7 @@ const ContactSection = () => {
     category: "",
     message: ""
   });
+  const [showMeetupOptions, setShowMeetupOptions] = useState(false);
 
   const categories = [
     { value: "recruiter", label: "Recruiter", icon: Briefcase, color: "bg-blue-500/20 text-blue-400" },
@@ -28,7 +29,7 @@ const ContactSection = () => {
     { label: "Schedule a Call", icon: Calendar, href: "https://calendly.com/maxlobel", primary: true },
     { label: "Email Me", icon: Mail, href: "mailto:maxlobel1@gmail.com" },
     { label: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/maxlobel" },
-    { label: "Boston Meetup", icon: MapPin, href: "https://www.meetup.com/boston-tech" }
+    { label: "Boston Meetup", icon: MapPin, href: "boston-meetup", isSpecial: true }
   ];
 
   // Log site action utility
@@ -68,6 +69,15 @@ const ContactSection = () => {
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleMeetupSelection = (choice: string) => {
+    setShowMeetupOptions(false);
+    if (choice === 'coffee') {
+      window.open('https://calendly.com/maxlobel/coffee-chat', '_blank', 'noopener,noreferrer');
+    } else if (choice === 'beer') {
+      window.open('https://calendly.com/maxlobel/beer-meetup', '_blank', 'noopener,noreferrer');
+    }
   };
 
   // Fun Fact logic
@@ -117,6 +127,9 @@ const ContactSection = () => {
                 className={`rounded-lg border bg-card text-card-foreground shadow-sm text-center cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-lg block ${link.primary ? 'border-primary/30 bg-primary/5' : ''}`}
                 onClick={() => {
                   console.log(`Clicked: ${link.label} - ${link.href}`);
+                  if (link.isSpecial && link.href === 'boston-meetup') {
+                    setShowMeetupOptions(true);
+                  }
                 }}
                 style={{ userSelect: 'none', textDecoration: 'none' }}
               >
@@ -129,6 +142,38 @@ const ContactSection = () => {
               </a>
             ))}
           </div>
+
+          {/* Boston Meetup Options Modal */}
+          {showMeetupOptions && (
+            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+              <div className="bg-card rounded-lg p-8 max-w-md w-full mx-4 border border-border/50">
+                <h3 className="text-2xl font-bold mb-4 text-center">Boston Meetup</h3>
+                <p className="text-muted-foreground mb-6 text-center">
+                  Let's grab a drink! What's your preference?
+                </p>
+                <div className="flex gap-4">
+                  <button
+                    onClick={() => handleMeetupSelection('coffee')}
+                    className="flex-1 bg-primary text-primary-foreground py-3 px-4 rounded-lg font-medium hover:bg-primary/90 transition-colors"
+                  >
+                    ☕ Coffee
+                  </button>
+                  <button
+                    onClick={() => handleMeetupSelection('beer')}
+                    className="flex-1 bg-secondary text-secondary-foreground py-3 px-4 rounded-lg font-medium hover:bg-secondary/90 transition-colors"
+                  >
+                    🍺 Beer
+                  </button>
+                </div>
+                <button
+                  onClick={() => setShowMeetupOptions(false)}
+                  className="w-full mt-4 text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          )}
 
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Contact Form */}
