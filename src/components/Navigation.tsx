@@ -41,8 +41,11 @@ const Navigation = () => {
                 {item.label}
               </button>
             ))}
-            <Button className="btn-hero">
-              Hire Me
+            <Button 
+              className="btn-hero"
+              onClick={() => window.open('https://calendly.com/maxlobel', '_blank', 'noopener,noreferrer')}
+            >
+              Let's Chat
             </Button>
           </div>
 
@@ -68,8 +71,11 @@ const Navigation = () => {
                   {item.label}
                 </button>
               ))}
-              <Button className="btn-hero w-full">
-                Hire Me
+              <Button 
+                className="btn-hero w-full"
+                onClick={() => window.open('https://calendly.com/maxlobel', '_blank', 'noopener,noreferrer')}
+              >
+                Let's Chat
               </Button>
             </div>
           </div>
