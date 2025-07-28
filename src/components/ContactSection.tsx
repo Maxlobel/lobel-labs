@@ -25,10 +25,10 @@ const ContactSection = () => {
   ];
 
   const quickLinks = [
-    { label: "Schedule a Call", icon: Calendar, href: "#", primary: true },
-    { label: "Email Me", icon: Mail, href: "mailto:max@example.com" },
+    { label: "Schedule a Call", icon: Calendar, href: "https://calendly.com/maxlobel", primary: true },
+    { label: "Email Me", icon: Mail, href: "mailto:maxlobel1@gmail.com" },
     { label: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/maxlobel" },
-    { label: "Boston Meetup", icon: MapPin, href: "#" }
+    { label: "Boston Meetup", icon: MapPin, href: "https://www.meetup.com/boston-tech" }
   ];
 
   // Log site action utility
@@ -109,14 +109,25 @@ const ContactSection = () => {
           {/* Quick Links */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
             {quickLinks.map((link, index) => (
-              <Card key={index} className={`project-card text-center cursor-pointer ${link.primary ? 'border-primary/30 bg-primary/5' : ''}`}>
-                <CardContent className="p-6">
+              <a 
+                key={index} 
+                href={link.href}
+                target={link.href.startsWith('http') ? '_blank' : undefined}
+                rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className={`rounded-lg border bg-card text-card-foreground shadow-sm text-center cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-lg block ${link.primary ? 'border-primary/30 bg-primary/5' : ''}`}
+                onClick={() => {
+                  console.log(`Clicked: ${link.label} - ${link.href}`);
+                  alert(`Clicked: ${link.label}`); // Debug alert
+                }}
+                style={{ userSelect: 'none', textDecoration: 'none' }}
+              >
+                <div className="p-6">
                   <link.icon className={`w-8 h-8 mx-auto mb-3 ${link.primary ? 'text-primary' : 'text-secondary'}`} />
                   <p className={`font-medium ${link.primary ? 'text-primary' : 'text-foreground'}`}>
                     {link.label}
                   </p>
-                </CardContent>
-              </Card>
+                </div>
+              </a>
             ))}
           </div>
 
