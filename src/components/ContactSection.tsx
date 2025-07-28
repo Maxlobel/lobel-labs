@@ -74,9 +74,13 @@ const ContactSection = () => {
   const handleMeetupSelection = (choice: string) => {
     setShowMeetupOptions(false);
     if (choice === 'coffee') {
-      window.open('https://calendly.com/maxlobel/coffee-chat', '_blank', 'noopener,noreferrer');
+      // For now, just show a success message - you can update this URL later
+      toast.success(`Coffee meetup selected! I'll reach out to schedule.`);
+      // window.open('https://calendly.com/maxlobel/coffee-chat', '_blank', 'noopener,noreferrer');
     } else if (choice === 'beer') {
-      window.open('https://calendly.com/maxlobel/beer-meetup', '_blank', 'noopener,noreferrer');
+      // For now, just show a success message - you can update this URL later
+      toast.success(`Beer meetup selected! I'll reach out to schedule.`);
+      // window.open('https://calendly.com/maxlobel/beer-meetup', '_blank', 'noopener,noreferrer');
     }
   };
 
