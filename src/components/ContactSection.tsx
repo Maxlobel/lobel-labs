@@ -22,7 +22,9 @@ const ContactSection = () => {
     { value: "recruiter", label: "Recruiter", icon: Briefcase, color: "bg-blue-500/20 text-blue-400" },
     { value: "client", label: "Client", icon: DollarSign, color: "bg-green-500/20 text-green-400" },
     { value: "collaborator", label: "Collaborator", icon: Users, color: "bg-purple-500/20 text-purple-400" },
-    { value: "friend", label: "Just Saying Hi", icon: Heart, color: "bg-pink-500/20 text-pink-400" }
+    { value: "friend", label: "Just Saying Hi", icon: Heart, color: "bg-pink-500/20 text-pink-400" },
+    { value: "coffee", label: "Coffee Meetup", icon: Users, color: "bg-amber-500/20 text-amber-400" },
+    { value: "beer", label: "Beer Meetup", icon: Users, color: "bg-orange-500/20 text-orange-400" }
   ];
 
   const quickLinks = [
@@ -74,32 +76,33 @@ const ContactSection = () => {
   const handleMeetupSelection = async (choice: string) => {
     setShowMeetupOptions(false);
     
-    // Log the meetup selection to Supabase
-    const meetupData = {
-      meetup_type: choice,
-      timestamp: new Date().toISOString(),
-      user_agent: navigator.userAgent,
-      referrer: document.referrer || 'direct'
-    };
-    
     try {
-      // Store in Supabase - this will notify you
-      await supabase.from("meetup_requests").insert([meetupData]);
+      // Create a contact submission with meetup details
+      const meetupSubmission = {
+        name: "Boston Meetup Request",
+        email: "meetup-request@placeholder.com", // Placeholder email
+        category: choice, // "coffee" or "beer"
+        message: `Someone requested a ${choice} meetup through the Boston Meetup option. Browser: ${navigator.userAgent?.substring(0, 100) || 'Unknown'}. Referrer: ${document.referrer || 'Direct visit'}.`
+      };
       
-      // Also log as a site action
-      await logSiteAction("meetup_request", meetupData);
+      // Store in the existing contact_submissions table
+      const { error } = await supabase.from("contact_submissions").insert([meetupSubmission]);
+      
+      if (error) {
+        throw error;
+      }
+      
+      // Log as a site action
+      await logSiteAction("meetup_request", { meetup_type: choice });
       
       if (choice === 'coffee') {
         toast.success(`Coffee meetup selected! I'll reach out to schedule.`);
-        // window.open('https://calendly.com/maxlobel/coffee-chat', '_blank', 'noopener,noreferrer');
       } else if (choice === 'beer') {
         toast.success(`Beer meetup selected! I'll reach out to schedule.`);
-        // window.open('https://calendly.com/maxlobel/beer-meetup', '_blank', 'noopener,noreferrer');
       }
     } catch (error) {
       console.error('Error logging meetup request:', error);
-      // Still show success message to user
-      toast.success(`${choice === 'coffee' ? 'Coffee' : 'Beer'} meetup selected! I'll reach out to schedule.`);
+      toast.error("Something went wrong. Please try the contact form instead.");
     }
   };
 
