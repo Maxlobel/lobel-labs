@@ -116,7 +116,14 @@ const ServicesSection = () => {
 
                   {/* Pricing - removed */}
                   <div className="pt-4 border-t border-border/50">
-                    <Button className="w-full btn-hero">
+                    <Button 
+                      className="w-full btn-hero"
+                      onClick={() => {
+                        window.open('https://calendly.com/maxlobel', '_blank', 'noopener,noreferrer');
+                        // Log the action
+                        logSiteAction("service_get_started", { service: service.title });
+                      }}
+                    >
                       Get Started
                       <ArrowRight size={16} className="ml-2" />
                     </Button>
