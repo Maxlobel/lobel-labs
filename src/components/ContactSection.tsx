@@ -117,7 +117,6 @@ const ContactSection = () => {
                 className={`rounded-lg border bg-card text-card-foreground shadow-sm text-center cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-lg block ${link.primary ? 'border-primary/30 bg-primary/5' : ''}`}
                 onClick={() => {
                   console.log(`Clicked: ${link.label} - ${link.href}`);
-                  alert(`Clicked: ${link.label}`); // Debug alert
                 }}
                 style={{ userSelect: 'none', textDecoration: 'none' }}
               >
