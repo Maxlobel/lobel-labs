@@ -125,13 +125,14 @@ const ContactSection = () => {
             {quickLinks.map((link, index) => (
               <a 
                 key={index} 
-                href={link.href}
+                href={link.isSpecial ? '#' : link.href}
                 target={link.href.startsWith('http') ? '_blank' : undefined}
                 rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className={`rounded-lg border bg-card text-card-foreground shadow-sm text-center cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-lg block ${link.primary ? 'border-primary/30 bg-primary/5' : ''}`}
-                onClick={() => {
+                onClick={(e) => {
                   console.log(`Clicked: ${link.label} - ${link.href}`);
                   if (link.isSpecial && link.href === 'boston-meetup') {
+                    e.preventDefault();
                     setShowMeetupOptions(true);
                   }
                 }}
