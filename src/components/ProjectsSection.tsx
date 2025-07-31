@@ -1,10 +1,20 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github, Bot, Film, Calculator, Settings, Utensils } from "lucide-react";
+import { ExternalLink, Github, Bot, Film, Calculator, Settings, Utensils, Target } from "lucide-react";
 
 const ProjectsSection = () => {
   const projects = [
+    {
+      title: "RoleVista Career Platform",
+      description: "AI-powered career assessment platform that helps users discover their ideal career path through personalized assessments and job recommendations",
+      icon: Target,
+      tags: ["React", "Node.js", "Redux", "SQLite", "AI Assessment", "Full-Stack"],
+      status: "Complete",
+      color: "primary",
+      demoUrl: "https://rolevista.vercel.app",
+      githubUrl: "https://github.com/Maxlobel/rolevista"
+    },
     {
       title: "AI Job Agent",
       description: "Automated job application system that intelligently matches and applies to relevant positions",
@@ -118,20 +128,44 @@ const ProjectsSection = () => {
 
                   {/* Action Buttons */}
                   <div className="flex gap-2 pt-2">
-                    <Button 
-                      size="sm" 
-                      className="flex-1 bg-primary/10 hover:bg-primary/20 text-primary border-primary/30"
-                    >
-                      <ExternalLink size={14} className="mr-2" />
-                      Demo
-                    </Button>
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
-                      className="bg-muted/20 border-border/50 hover:bg-muted/30"
-                    >
-                      <Github size={14} />
-                    </Button>
+                    {project.demoUrl ? (
+                      <Button 
+                        size="sm" 
+                        className="flex-1 bg-primary/10 hover:bg-primary/20 text-primary border-primary/30"
+                        onClick={() => window.open(project.demoUrl, '_blank')}
+                      >
+                        <ExternalLink size={14} className="mr-2" />
+                        Demo
+                      </Button>
+                    ) : (
+                      <Button 
+                        size="sm" 
+                        className="flex-1 bg-muted/30 text-muted-foreground cursor-not-allowed"
+                        disabled
+                      >
+                        <ExternalLink size={14} className="mr-2" />
+                        Demo
+                      </Button>
+                    )}
+                    {project.githubUrl ? (
+                      <Button 
+                        size="sm" 
+                        variant="outline" 
+                        className="bg-muted/20 border-border/50 hover:bg-muted/30"
+                        onClick={() => window.open(project.githubUrl, '_blank')}
+                      >
+                        <Github size={14} />
+                      </Button>
+                    ) : (
+                      <Button 
+                        size="sm" 
+                        variant="outline" 
+                        className="bg-muted/30 border-muted/50 text-muted-foreground cursor-not-allowed"
+                        disabled
+                      >
+                        <Github size={14} />
+                      </Button>
+                    )}
                   </div>
                 </CardContent>
               </Card>
