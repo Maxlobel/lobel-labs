@@ -1,10 +1,19 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github, Bot, Film, Calculator, Settings, Utensils, Target } from "lucide-react";
+import { ExternalLink, Github, Bot, Film, Calculator, Settings, Utensils, Target, Mountain } from "lucide-react";
 
 const ProjectsSection = () => {
   const projects = [
+    {
+      title: "Aprés Boston",
+      description: "We make the slopes accessible and the après legendary. A skiing community platform connecting Boston skiers with mountain adventures and legendary après-ski experiences.",
+      icon: Mountain,
+      tags: ["Community", "Skiing", "Social", "Boston", "Adventure"],
+      status: "Active",
+      color: "primary",
+      demoUrl: "https://apres-boston.vercel.app"
+    },
     {
       title: "RoleVista Career Platform",
       description: "AI-powered career assessment platform that helps users discover their ideal career path through personalized assessments and job recommendations",
@@ -38,14 +47,6 @@ const ProjectsSection = () => {
       tags: ["Google Sheets", "Analytics", "Sports"],
       status: "Complete",
       color: "primary"
-    },
-    {
-      title: "Reconciliation Automation",
-      description: "Streamlined data reconciliation tool for enterprise financial processes",
-      icon: Settings,
-      tags: ["Enterprise", "Data", "CVS Health"],
-      status: "Production",
-      color: "secondary"
     },
     {
       title: "Sushi Experience Tracker",
