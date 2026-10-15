@@ -1,12 +1,14 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Bot, BarChart3, Rocket, Users, ArrowRight, CheckCircle } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Bot, BarChart3, Rocket, MessageCircle, Compass, ArrowRight, CheckCircle } from "lucide-react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
 
+import ConsultingIntake, { type IntakePath } from "@/components/ConsultingIntake";
+
 const ServicesSection = () => {
+  const [intake, setIntake] = useState<{ path: IntakePath; service?: string } | null>(null);
   const services = [
     {
       title: "AI-Powered Automations",
@@ -78,9 +80,40 @@ const ServicesSection = () => {
               <span className="text-gradient-primary">Services</span> & Consulting
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Turn your ideas into reality with AI automation, data insights, and startup expertise
+              Practical help with AI, technology, and the way you work. We’ll start with your goals and figure out what would actually help.
             </p>
           </div>
+
+          <div className="mb-14 overflow-hidden rounded-2xl border border-primary/25 bg-gradient-to-br from-primary/10 via-card to-secondary/5">
+            <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-[1fr_1.15fr] lg:p-10">
+              <div className="flex flex-col justify-center">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary">Start with a conversation</p>
+                <h3 className="mb-4 text-2xl font-bold leading-tight sm:text-3xl">You don’t need to have it all figured out.</h3>
+                <p className="leading-relaxed text-muted-foreground">Whether you’re curious about AI, looking to improve how your business runs, or ready to bring an idea to life, I’ll help you find a practical next step.</p>
+              </div>
+              <div className="grid gap-3">
+                <button type="button" onClick={() => setIntake({ path: "explore" })} className="group flex items-start gap-4 rounded-xl border border-primary/30 bg-background/50 p-5 text-left transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                  <Compass className="mt-1 h-6 w-6 shrink-0 text-primary" aria-hidden="true" />
+                  <span className="min-w-0 flex-1"><span className="block font-semibold">Help me figure out where to start</span><span className="mt-1 block text-sm leading-relaxed text-muted-foreground">A few guided questions about you and what could work better.</span></span>
+                  <ArrowRight className="mt-1 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                </button>
+                <button type="button" onClick={() => setIntake({ path: "project" })} className="group flex items-start gap-4 rounded-xl border border-border bg-background/50 p-5 text-left transition-colors hover:bg-secondary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary">
+                  <MessageCircle className="mt-1 h-6 w-6 shrink-0 text-secondary" aria-hidden="true" />
+                  <span className="min-w-0 flex-1"><span className="block font-semibold">I have something specific in mind</span><span className="mt-1 block text-sm leading-relaxed text-muted-foreground">Tell me about your idea, challenge, or project.</span></span>
+                  <ArrowRight className="mt-1 h-5 w-5 shrink-0 text-secondary" aria-hidden="true" />
+                </button>
+                <p className="px-1 pt-1 text-sm text-muted-foreground">Prefer to talk it through? <a href="https://calendly.com/maxlobel" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4">Book a conversation</a>.</p>
+              </div>
+            </div>
+            <div className="grid gap-6 border-t border-border/70 bg-background/30 p-6 sm:grid-cols-3 sm:p-8">
+              {[
+                { number: "01", title: "Understand", copy: "We talk about your goals, how things work today, and where you’re getting stuck." },
+                { number: "02", title: "Find the right fit", copy: "I recommend a focused next step, with clear scope and pricing before any work begins." },
+                { number: "03", title: "Build & learn", copy: "If we decide to work together, I help put the solution in place and show you how to use it." },
+              ].map(item => <div key={item.number}><p className="mb-2 text-xs font-semibold tracking-wider text-primary">{item.number}</p><h4 className="mb-2 font-semibold">{item.title}</h4><p className="text-sm leading-relaxed text-muted-foreground">{item.copy}</p></div>)}
+            </div>
+          </div>
+          <h3 className="mb-6 text-2xl font-bold">Ways I can help</h3>
 
           {/* Services Grid */}
           <div className="grid lg:grid-cols-3 gap-8 mb-16">
@@ -118,13 +151,9 @@ const ServicesSection = () => {
                   <div className="pt-4 border-t border-border/50">
                     <Button 
                       className="w-full btn-hero"
-                      onClick={() => {
-                        window.open('https://calendly.com/maxlobel', '_blank', 'noopener,noreferrer');
-                        // Log the action
-                        logSiteAction("service_get_started", { service: service.title });
-                      }}
+                      onClick={() => setIntake({ path: "project", service: service.title })}
                     >
-                      Get Started
+                      Tell me what you have in mind
                       <ArrowRight size={16} className="ml-2" />
                     </Button>
                   </div>
@@ -196,6 +225,7 @@ const ServicesSection = () => {
           </div>
         </div>
       </div>
+      {intake && <ConsultingIntake path={intake.path} service={intake.service} onClose={() => setIntake(null)} />}
     </section>
   );
 };
