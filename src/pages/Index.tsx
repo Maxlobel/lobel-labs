@@ -1,27 +1,28 @@
 import Navigation from "@/components/Navigation";
-import HeroSection, { WhyHireMeSection } from "@/components/HeroSection";
-import AboutSection, { ToolsTechnologiesSection } from "@/components/AboutSection";
+import HeroSection from "@/components/HeroSection";
+import AboutSection from "@/components/AboutSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import ServicesSection from "@/components/ServicesSection";
-import ExperimentsSection from "@/components/ExperimentsSection";
-import ContactSection from "@/components/ContactSection";
+import InquirySection from "@/components/InquirySection";
+import Testimonials from "@/components/Testimonials";
+import NoteSection from "@/components/NoteSection";
+import FunFacts from "@/components/FunFacts";
 import Footer from "@/components/Footer";
-
-const Index = () => {
+export default function Index() {
   return (
-    <div className="min-h-screen bg-background">
+    <>
       <Navigation />
-      <HeroSection />
-      <WhyHireMeSection />
-      <AboutSection />
-      <ToolsTechnologiesSection />
-      <ProjectsSection />
-      <ServicesSection />
-      <ExperimentsSection />
-      <ContactSection />
+      <main id="main">
+        <HeroSection />
+        <ServicesSection />
+        <ProjectsSection />
+        <AboutSection />
+        <InquirySection />
+        <Testimonials />
+        <NoteSection />
+        <FunFacts />
+      </main>
       <Footer />
-    </div>
+    </>
   );
-};
-
-export default Index;
+}

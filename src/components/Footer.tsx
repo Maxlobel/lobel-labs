@@ -1,86 +1,47 @@
-import { Mail, Linkedin, Github, Instagram, Calendar } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-
-const Footer = () => {
-  const socialLinks = [
-    { icon: Linkedin, href: "https://www.linkedin.com/in/maxlobel", label: "LinkedIn" },
-    { icon: Github, href: "#", label: "GitHub" },
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Mail, href: "mailto:max@example.com", label: "Email" }
-  ];
-
-  const quickLinks = [
-    { label: "About", href: "#about" },
-    { label: "Projects", href: "#projects" },
-    { label: "Services", href: "#services" },
-    { label: "Experiments", href: "#experiments" },
-    { label: "Contact", href: "#contact" }
-  ];
-
+import { site } from "@/lib/site";
+export default function Footer() {
   return (
-    <footer className="bg-background/80 backdrop-blur-sm border-t border-border/50">
-      <div className="container mx-auto px-4 lg:px-8 py-12">
-        <div className="grid lg:grid-cols-4 gap-8">
-          {/* Brand & Tagline */}
-          <div className="lg:col-span-2 space-y-4">
-            <h3 className="text-2xl font-bold text-gradient-primary">Max Lobel</h3>
-            <p className="text-muted-foreground max-w-md">
-              Building the future with AI, data, and creative firepower. 
-              Let's create something amazing together.
+    <footer id="contact" className="border-t border-border bg-card/30">
+      <div className="mx-auto max-w-6xl px-5 py-9 sm:px-8">
+        <div className="flex flex-col justify-between gap-6 sm:flex-row">
+          <div>
+            <a href="/" className="text-xl font-semibold text-primary">
+              Max Lobel
+            </a>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Practical help with AI, data, and technology. Based in Boston.
             </p>
-            <div className="flex items-center gap-4">
-              {socialLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.href}
-                  className="w-10 h-10 bg-muted/30 hover:bg-primary/20 rounded-lg flex items-center justify-center transition-colors duration-300 hover:text-primary"
-                  aria-label={link.label}
-                >
-                  <link.icon size={18} />
-                </a>
-              ))}
-            </div>
           </div>
-
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h4 className="font-semibold text-foreground">Quick Links</h4>
-            <div className="space-y-2">
-              {quickLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.href}
-                  className="block text-muted-foreground hover:text-primary transition-colors duration-300"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          </div>
+          <nav
+            aria-label="Contact links"
+            className="flex flex-wrap items-start gap-x-5 gap-y-3 text-sm"
+          >
+            <a href={`mailto:${site.email}`}>Email Max</a>
+            <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+            <a href={site.github} target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+            <a
+              href={site.booking}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary"
+            >
+              Book a call
+            </a>
+          </nav>
         </div>
-
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
-            © 2024 Max Lobel. Built with React, Tailwind, and ⚡
-          </p>
-          <div className="flex items-center gap-6 text-sm">
-            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
-              <Calendar size={14} className="mr-2" />
-              Book a Call
-            </Button>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-              Privacy
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-              Terms
-            </a>
+        <div className="mt-7 flex flex-wrap justify-between gap-3 border-t border-border pt-5 text-xs text-muted-foreground">
+          <p>© {new Date().getFullYear()} Max Lobel</p>
+          <div className="flex gap-5">
+            <a href="/#submit-note">Submit a note about Max</a>
+            <a href="/privacy">Privacy</a>
+            <a href="/lab">Private lab</a>
           </div>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

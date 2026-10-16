@@ -1,0 +1,33 @@
+{
+  "rewrites": [
+    {
+      "source": "/projects/apres-boston",
+      "destination": "/projects/apres-boston/index.html"
+    },
+    {
+      "source": "/projects/apres-boston/:path*",
+      "destination": "/projects/apres-boston/index.html"
+    },
+    {
+      "source": "/((?!api/|assets/|projects/apres-boston/).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/lab",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/api/lab",
+      "headers": [{ "key": "Cache-Control", "value": "private, no-store" }]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ]
+}
