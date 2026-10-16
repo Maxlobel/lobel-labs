@@ -50,7 +50,7 @@ const AboutSection = () => {
               <div className="space-y-4">
                 <div className="flex items-center gap-2 text-primary">
                   <Building size={20} />
-                  <span className="font-semibold">Data Analyst @ CVS Health</span>
+                  <span className="font-semibold">Senior Analyst @ Digitas</span>
                 </div>
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <MapPin size={16} />
@@ -60,10 +60,12 @@ const AboutSection = () => {
 
               <div className="space-y-4 text-foreground/90 leading-relaxed">
                 <p>
-                  I'm a data analyst at <span className="text-primary font-semibold">CVS Health</span> where I specialize in 
-                  automation, data insights, and AI-powered solutions. When I'm not crunching numbers, 
-                  I'm building AI agents, experimenting with startup ideas, and exploring the intersection 
-                  of technology and creativity.
+                  I'm a Senior Analyst at <span className="text-primary font-semibold">Digitas</span>,
+                  where I help Titleist turn marketing data into clear insights and better decisions.
+                  My work brings together analytics, client collaboration, and automation. I enjoy
+                  getting to the root of a problem, building something useful, and making it easier
+                  for people to do their best work. Outside of my day job, I explore AI tools and
+                  build practical solutions for individuals and small businesses.
                 </p>
                 
                 <p>
