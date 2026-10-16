@@ -1,248 +1,86 @@
-import { Badge } from "@/components/ui/badge";
-import { MapPin, Building, Lightbulb, Code, Database, Brain } from "lucide-react";
-import { useState } from "react";
+import { MapPin, Building2 } from "lucide-react";
 
-const AboutSection = () => {
-  const tools = [
-    "SQL", "Python", "GPT", "Make.com", "Tailwind", "GitHub", 
-    "Foundry", "BigQuery", "React", "TypeScript", "Automation"
-  ];
-
-  const interests = [
-    { icon: Building, label: "Startups", color: "text-primary" },
-    { icon: Code, label: "AI Automation", color: "text-secondary" },
-    { icon: Database, label: "Data Analysis", color: "text-primary" },
-    { icon: Brain, label: "Philosophy", color: "text-secondary" }
-  ];
-
+const toolGroups = [
+  {
+    title: "Data & analytics",
+    copy: "Cleaning information, building reports, and explaining what the numbers mean.",
+    tools: ["Python", "SQL", "Excel", "Domo", "Power BI", "Google Analytics"],
+  },
+  {
+    title: "AI & automation",
+    copy: "Connecting useful tools and making repeatable work easier.",
+    tools: ["ChatGPT", "Claude", "Make.com", "n8n"],
+  },
+  {
+    title: "Web & development",
+    copy: "Building and maintaining practical websites and applications.",
+    tools: ["React", "TypeScript", "Supabase", "GitHub", "WordPress"],
+  },
+];
+export default function AboutSection() {
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-background to-background/80">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              About <span className="text-gradient-primary">Max</span>
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Data analyst, AI builder, and entrepreneur with a passion for automation
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Photo Placeholder */}
-            <div className="order-2 lg:order-1">
-              <div className="relative">
-                <div className="w-full h-96 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl flex items-center justify-center border border-border/50">
-                  <div className="text-center">
-                    <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Lightbulb className="w-10 h-10 text-primary" />
-                    </div>
-                    <p className="text-muted-foreground">Professional Photo</p>
-                  </div>
-                </div>
-                <div className="absolute -inset-1 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl blur-lg -z-10"></div>
-              </div>
+    <section id="about" className="section-shell">
+      <div className="grid gap-8 lg:grid-cols-[.7fr_1.3fr]">
+        <div>
+          <p className="eyebrow">The person behind the projects</p>
+          <h2 className="section-title mt-3">About Max</h2>
+          <p className="mt-5 flex items-center gap-2 text-sm text-primary">
+            <Building2 className="h-4 w-4" aria-hidden="true" />
+            Senior Analyst @ Digitas
+          </p>
+          <p className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
+            <MapPin className="h-4 w-4" aria-hidden="true" />
+            South Boston, MA
+          </p>
+        </div>
+        <div className="space-y-5 leading-relaxed text-muted-foreground">
+          <p>
+            I'm a Senior Analyst at Digitas, where I help Titleist turn
+            marketing data into clear insights and better decisions. My work
+            brings together analytics, client collaboration, and automation.
+          </p>
+          <p>
+            I studied Information Science with a Data Science specialization at
+            the University of Maryland, alongside a minor in Entrepreneurship
+            Technology. Since then, I've worked across software development,
+            business analytics, and healthcare analytics.
+          </p>
+          <p>
+            I enjoy getting to the root of a problem, building something useful,
+            and helping people feel comfortable using it. Outside my day job, I
+            explore AI tools and help individuals and small businesses put
+            technology to work.
+          </p>
+          <p>
+            Outside work, you'll find me skiing, golfing, cooking, or getting
+            out on the water. Fishing, boating, and time with friends are
+            usually part of the plan.
+          </p>
+        </div>
+      </div>
+      <div className="mt-12 border-t border-border pt-9">
+        <h3 className="text-xl font-semibold">Technical stack & tools</h3>
+        <div className="mt-6 grid gap-6 md:grid-cols-3">
+          {toolGroups.map((group) => (
+            <div key={group.title}>
+              <h4 className="font-semibold text-primary">{group.title}</h4>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {group.copy}
+              </p>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {group.tools.map((tool) => (
+                  <li
+                    key={tool}
+                    className="rounded-md border border-border bg-card px-2.5 py-1 text-xs"
+                  >
+                    {tool}
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            {/* Bio Content */}
-            <div className="order-1 lg:order-2 space-y-6">
-              <div className="space-y-4">
-                <div className="flex items-center gap-2 text-primary">
-                  <Building size={20} />
-                  <span className="font-semibold">Senior Analyst @ Digitas</span>
-                </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <MapPin size={16} />
-                  <span>Boston, MA</span>
-                </div>
-              </div>
-
-              <div className="space-y-4 text-foreground/90 leading-relaxed">
-                <p>
-                  I'm a Senior Analyst at <span className="text-primary font-semibold">Digitas</span>,
-                  where I help Titleist turn marketing data into clear insights and better decisions.
-                  My work brings together analytics, client collaboration, and automation. I enjoy
-                  getting to the root of a problem, building something useful, and making it easier
-                  for people to do their best work. Outside of my day job, I explore AI tools and
-                  build practical solutions for individuals and small businesses.
-                </p>
-                
-                <p>
-                  My mission is simple: <span className="text-secondary font-semibold">help people and businesses unlock 
-                  the power of AI and automation</span>. Whether it's streamlining business processes, 
-                  building data dashboards, or creating AI-powered tools, I love turning complex problems 
-                  into elegant solutions.
-                </p>
-
-                <p>
-                  Outside of work, you'll find me rating omakase experiences, diving into philosophy, 
-                  crafting creative stories, or brainstorming the next big startup idea over sushi.
-                </p>
-              </div>
-
-              {/* Interests */}
-              <div className="space-y-3">
-                <h4 className="font-semibold text-foreground">Interests & Specialties</h4>
-                <div className="grid grid-cols-2 gap-3">
-                  {interests.map((interest, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <interest.icon size={16} className={interest.color} />
-                      <span className="text-sm text-muted-foreground">{interest.label}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default AboutSection;
-
-// ToolsGrid Section
-export const ToolsTechnologiesSection = () => (
-  <section className="py-16 bg-gradient-to-b from-background/80 to-background">
-    <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
-      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
-        Technical Stack & Tools
-      </h2>
-      {/* Key Tools Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-10 justify-items-center">
-        <div className="flex flex-col items-center">
-          <span className="text-5xl mb-2">🐍</span>
-          <span className="text-lg font-medium">Python</span>
-        </div>
-        <div className="flex flex-col items-center">
-          <span className="text-5xl mb-2">🟦</span>
-          <span className="text-lg font-medium">SQL</span>
-        </div>
-        <div className="flex flex-col items-center">
-          <span className="text-5xl mb-2">🤖</span>
-          <span className="text-lg font-medium">GPT-4</span>
-        </div>
-        <div className="flex flex-col items-center">
-          <span className="text-5xl mb-2">⚡</span>
-          <span className="text-lg font-medium">Supabase</span>
-        </div>
-        <div className="flex flex-col items-center">
-          <span className="text-5xl mb-2">☁️</span>
-          <span className="text-lg font-medium">AWS</span>
-        </div>
-        <div className="flex flex-col items-center">
-          <span className="text-5xl mb-2">📊</span>
-          <span className="text-lg font-medium">Tableau</span>
-        </div>
-        <div className="flex flex-col items-center">
-          <span className="text-5xl mb-2">⚛️</span>
-          <span className="text-lg font-medium">React</span>
-        </div>
-        <div className="flex flex-col items-center">
-          <span className="text-5xl mb-2">🎨</span>
-          <span className="text-lg font-medium">Tailwind</span>
-        </div>
-      </div>
-      {/* Categorized List of All Tools */}
-      <div className="grid md:grid-cols-2 gap-8">
-        <div>
-          <h3 className="font-semibold mb-2 flex items-center gap-2">🔍 Data & Analytics</h3>
-          <div className="flex flex-wrap gap-2 text-muted-foreground">
-            <span className="badge">SQL</span>
-            <span className="badge">BigQuery</span>
-            <span className="badge">Snowflake</span>
-            <span className="badge">Tableau</span>
-            <span className="badge">Power BI</span>
-            <span className="badge">Domo</span>
-            <span className="badge">Excel</span>
-            <span className="badge">Google Sheets</span>
-            <span className="badge">Pandas</span>
-            <span className="badge">NumPy</span>
-            <span className="badge">Jupyter</span>
-            <span className="badge">scikit-learn</span>
-            <span className="badge">dbt</span>
-          </div>
-        </div>
-        <div>
-          <h3 className="font-semibold mb-2 flex items-center gap-2">🤖 AI & Automation</h3>
-          <div className="flex flex-wrap gap-2 text-muted-foreground">
-            <span className="badge">OpenAI API</span>
-            <span className="badge">GPT-4</span>
-            <span className="badge">Claude</span>
-            <span className="badge">Make.com</span>
-            <span className="badge">Zapier</span>
-            <span className="badge">n8n</span>
-            <span className="badge">LangChain</span>
-            <span className="badge">LlamaIndex</span>
-            <span className="badge">Pinecone</span>
-            <span className="badge">Hugging Face</span>
-            <span className="badge">Vertex AI</span>
-            <span className="badge">Automation</span>
-          </div>
-        </div>
-        <div>
-          <h3 className="font-semibold mb-2 flex items-center gap-2">🌐 Web & App Development</h3>
-          <div className="flex flex-wrap gap-2 text-muted-foreground">
-            <span className="badge">JavaScript</span>
-            <span className="badge">HTML</span>
-            <span className="badge">CSS</span>
-            <span className="badge">React</span>
-            <span className="badge">TypeScript</span>
-            <span className="badge">Tailwind CSS</span>
-            <span className="badge">Vercel</span>
-            <span className="badge">Netlify</span>
-            <span className="badge">Replit</span>
-            <span className="badge">Render</span>
-            <span className="badge">Next.js</span>
-            <span className="badge">Node.js</span>
-          </div>
-        </div>
-        <div>
-          <h3 className="font-semibold mb-2 flex items-center gap-2">☁️ Cloud & Data Platforms</h3>
-          <div className="flex flex-wrap gap-2 text-muted-foreground">
-            <span className="badge">Supabase</span>
-            <span className="badge">Palantir Foundry</span>
-            <span className="badge">AWS</span>
-            <span className="badge">Firebase</span>
-            <span className="badge">GCP</span>
-            <span className="badge">Azure</span>
-          </div>
-        </div>
-        <div>
-          <h3 className="font-semibold mb-2 flex items-center gap-2">🛠️ Dev & Productivity Tools</h3>
-          <div className="flex flex-wrap gap-2 text-muted-foreground">
-            <span className="badge">Git</span>
-            <span className="badge">GitHub</span>
-            <span className="badge">VSCode</span>
-            <span className="badge">JupyterLab</span>
-            <span className="badge">Docker</span>
-            <span className="badge">Postman</span>
-            <span className="badge">Swagger</span>
-            <span className="badge">Figma</span>
-            <span className="badge">Notion</span>
-          </div>
-        </div>
-        <div>
-          <h3 className="font-semibold mb-2 flex items-center gap-2">🧠 Bonus Skills</h3>
-          <div className="flex flex-wrap gap-2 text-muted-foreground">
-            <span className="badge">Salesforce</span>
-            <span className="badge">CRM</span>
-            <span className="badge">SEO</span>
-            <span className="badge">Google Analytics</span>
-            <span className="badge">Tag Manager</span>
-            <span className="badge">Search Console</span>
-            <span className="badge">PowerShell</span>
-            <span className="badge">Bash</span>
-            <span className="badge">Chatbot Development</span>
-            <span className="badge">Telegram Bots</span>
-            <span className="badge">Slack Integrations</span>
-            <span className="badge">Airtable</span>
-            <span className="badge">Webflow</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
+}

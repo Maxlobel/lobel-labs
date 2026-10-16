@@ -1,189 +1,64 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github, Bot, Film, Calculator, Settings, Utensils, Target, Mountain } from "lucide-react";
-
-const ProjectsSection = () => {
-  const projects = [
-    {
-      title: "Aprés Boston",
-      description: "We make the slopes accessible and the après legendary. A skiing community platform connecting Boston skiers with mountain adventures and legendary après-ski experiences.",
-      icon: Mountain,
-      tags: ["Community", "Skiing", "Social", "Boston", "Adventure"],
-      status: "Active",
-      color: "primary",
-      demoUrl: "https://apres-boston.vercel.app"
-    },
-    {
-      title: "RoleVista Career Platform",
-      description: "AI-powered career assessment platform that helps users discover their ideal career path through personalized assessments and job recommendations",
-      icon: Target,
-      tags: ["React", "Node.js", "Redux", "SQLite", "AI Assessment", "Full-Stack"],
-      status: "Complete",
-      color: "primary",
-      demoUrl: "https://rolevista.vercel.app",
-      githubUrl: "https://github.com/Maxlobel/rolevista"
-    },
-    {
-      title: "AI Job Agent",
-      description: "Automated job application system that intelligently matches and applies to relevant positions",
-      icon: Bot,
-      tags: ["AI", "Automation", "Python", "Make.com"],
-      status: "Active",
-      color: "primary"
-    },
-    {
-      title: "Telegram-to-Short Film AI",
-      description: "Transform simple prompts into complete scripts and scenes automatically",
-      icon: Film,
-      tags: ["GPT", "Content Creation", "Automation"],
-      status: "Beta",
-      color: "secondary"
-    },
-    {
-      title: "Fantasy Football Tracker",
-      description: "Google Sheets integration with win percentage calculator and advanced analytics",
-      icon: Calculator,
-      tags: ["Google Sheets", "Analytics", "Sports"],
-      status: "Complete",
-      color: "primary"
-    },
-    {
-      title: "Sushi Experience Tracker",
-      description: "Physical + digital omakase rating system with location and experience tracking",
-      icon: Utensils,
-      tags: ["Lifestyle", "Database", "Personal"],
-      status: "In Progress",
-      color: "primary"
-    }
-  ];
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "Active":
-      case "Production":
-        return "bg-green-500/20 text-green-400 border-green-500/30";
-      case "Beta":
-      case "In Progress":
-        return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
-      case "Complete":
-        return "bg-blue-500/20 text-blue-400 border-blue-500/30";
-      default:
-        return "bg-muted/20 text-muted-foreground border-muted/30";
-    }
-  };
-
+import { ArrowUpRight } from "lucide-react";
+import { projects } from "@/data/projects";
+import { site } from "@/lib/site";
+export default function ProjectsSection() {
   return (
-    <section id="projects" className="py-20 bg-gradient-to-b from-background/80 to-background">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Featured <span className="text-gradient-secondary">Projects</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              A collection of AI-powered tools, automation systems, and creative experiments
+    <section id="projects" className="section-shell border-t border-border/60">
+      <p className="eyebrow">Selected work</p>
+      <h2 className="section-title mt-3">Things I've built and worked on.</h2>
+      <p className="section-intro">
+        A mix of client work, internal tools, and personal projects. Each is
+        labeled with its current stage.
+      </p>
+      <div className="mt-8 grid gap-5 md:grid-cols-2">
+        {projects.map((p, i) => (
+          <article
+            key={p.slug}
+            className="flex flex-col rounded-2xl border border-border bg-card/50 p-6 sm:p-7"
+          >
+            <div className="flex items-center justify-between gap-4">
+              <span className="font-mono text-sm text-muted-foreground">
+                0{i + 1}
+              </span>
+              <span
+                className={`rounded-full border px-3 py-1 text-xs ${p.status === "Complete" ? "border-emerald-400/30 text-emerald-300" : p.status === "Beta" ? "border-secondary/30 text-secondary" : "border-primary/30 text-primary"}`}
+              >
+                {p.status}
+              </span>
+            </div>
+            <p className="mt-6 text-xs text-muted-foreground">{p.category}</p>
+            <h3 className="mt-2 text-2xl font-semibold">{p.title}</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              {p.summary}
             </p>
-          </div>
-
-          {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, index) => (
-              <Card key={index} className="project-card h-full group">
-                <CardHeader className="space-y-4">
-                  <div className="flex items-start justify-between">
-                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                      project.color === 'primary' ? 'bg-primary/20 text-primary' : 'bg-secondary/20 text-secondary'
-                    }`}>
-                      <project.icon size={24} />
-                    </div>
-                    <Badge className={getStatusColor(project.status)}>
-                      {project.status}
-                    </Badge>
-                  </div>
-                  
-                  <div>
-                    <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors">
-                      {project.title}
-                    </CardTitle>
-                    <CardDescription className="text-muted-foreground leading-relaxed">
-                      {project.description}
-                    </CardDescription>
-                  </div>
-                </CardHeader>
-
-                <CardContent className="space-y-4">
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, tagIndex) => (
-                      <Badge 
-                        key={tagIndex} 
-                        variant="outline" 
-                        className="text-xs bg-muted/50 border-border/50"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-2 pt-2">
-                    {project.demoUrl ? (
-                      <Button 
-                        size="sm" 
-                        className="flex-1 bg-primary/10 hover:bg-primary/20 text-primary border-primary/30"
-                        onClick={() => window.open(project.demoUrl, '_blank')}
-                      >
-                        <ExternalLink size={14} className="mr-2" />
-                        Demo
-                      </Button>
-                    ) : (
-                      <Button 
-                        size="sm" 
-                        className="flex-1 bg-muted/30 text-muted-foreground cursor-not-allowed"
-                        disabled
-                      >
-                        <ExternalLink size={14} className="mr-2" />
-                        Demo
-                      </Button>
-                    )}
-                    {project.githubUrl ? (
-                      <Button 
-                        size="sm" 
-                        variant="outline" 
-                        className="bg-muted/20 border-border/50 hover:bg-muted/30"
-                        onClick={() => window.open(project.githubUrl, '_blank')}
-                      >
-                        <Github size={14} />
-                      </Button>
-                    ) : (
-                      <Button 
-                        size="sm" 
-                        variant="outline" 
-                        className="bg-muted/30 border-muted/50 text-muted-foreground cursor-not-allowed"
-                        disabled
-                      >
-                        <Github size={14} />
-                      </Button>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* View More Projects */}
-          <div className="text-center mt-12">
-            <Button className="btn-hero text-lg px-8 py-6">
-              View All Projects on GitHub
-              <ExternalLink className="ml-2" size={20} />
-            </Button>
-          </div>
-        </div>
+            <ul className="mt-5 flex flex-wrap gap-2">
+              {p.tools.map((t) => (
+                <li
+                  key={t}
+                  className="rounded-md bg-muted px-2 py-1 text-xs text-muted-foreground"
+                >
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <a
+              href={p.href || `/projects/${p.slug}`}
+              className="mt-6 inline-flex items-center gap-2 self-start text-sm font-semibold text-primary"
+            >
+              {p.href ? "Open Après Boston" : "Read project overview"}
+              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </article>
+        ))}
       </div>
+      <a
+        href={site.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-6 inline-block text-sm text-muted-foreground underline underline-offset-4"
+      >
+        Browse public projects on GitHub
+      </a>
     </section>
   );
-};
-
-export default ProjectsSection;
+}
