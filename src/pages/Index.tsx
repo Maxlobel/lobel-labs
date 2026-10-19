@@ -8,8 +8,6 @@ import ProjectsSection from "@/components/ProjectsSection";
 import ServicesSection from "@/components/ServicesSection";
 import InquirySection from "@/components/InquirySection";
 import Testimonials from "@/components/Testimonials";
-import NoteSection from "@/components/NoteSection";
-import FunFacts from "@/components/FunFacts";
 import Footer from "@/components/Footer";
 export default function Index() {
   return (
@@ -24,8 +22,6 @@ export default function Index() {
         <ServicesSection />
         <InquirySection />
         <Testimonials />
-        <NoteSection />
-        <FunFacts />
       </main>
       <Footer />
     </>
