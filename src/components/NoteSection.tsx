@@ -53,23 +53,20 @@ export default function NoteSection() {
     }
   }
   return (
-    <section
-      id="submit-note"
-      className="section-shell border-t border-border/60"
-    >
+    <section id="submit-note" className="section-shell">
       <div className="mx-auto max-w-2xl">
-        <p className="eyebrow">Worked together?</p>
-        <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">
+        <p className="eyebrow text-center">Worked together?</p>
+        <h2 className="mt-3 text-center text-2xl font-semibold sm:text-3xl">
           Submit a note about Max
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
+        <p className="mt-3 text-center leading-relaxed text-muted-foreground">
           Share feedback about working with me. Notes are reviewed before
           anything is published, and only published with permission.
         </p>
         {!open ? (
           <Button
             variant="outline"
-            className="mt-5"
+            className="mx-auto mt-5 flex"
             onClick={() => setOpen(true)}
             aria-expanded={false}
           >

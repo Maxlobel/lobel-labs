@@ -12,7 +12,7 @@ export default function PageMetadata() {
           ? "Privacy | Max Lobel"
           : project
             ? `${project.title} | Max Lobel`
-            : "Max Lobel | AI, Automation & Analytics Consulting";
+            : "Max Lobel | AI, Data & Creative Projects";
     document.title = title;
     const canonical = document.querySelector<HTMLLinkElement>(
       'link[rel="canonical"]',
@@ -26,7 +26,7 @@ export default function PageMetadata() {
         pathname === "/lab" ? "noindex, nofollow" : "index, follow";
     const description =
       project?.summary ||
-      "Practical AI setup, workflow improvements, and analytics help for individuals and small businesses. Meet Max Lobel, a Boston based analyst and builder.";
+      "Explore Max Lobel's projects, background, and practical work in AI, data, and automation. Based in Boston and open to consulting and collaboration.";
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute("content", description);

@@ -43,7 +43,10 @@ export default function Lab() {
   return (
     <>
       <Navigation />
-      <main id="main" className="section-shell min-h-[65vh] max-w-4xl">
+      <main
+        id="main"
+        className="section-shell pt-28 sm:pt-32 min-h-[65vh] max-w-4xl"
+      >
         <p className="eyebrow">Private notebook</p>
         <h1 className="mt-3 text-4xl font-bold">Experiments & ideas</h1>
         {items ? (

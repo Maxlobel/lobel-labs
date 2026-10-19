@@ -27,19 +27,22 @@ const services = [
 export default function ServicesSection() {
   return (
     <section id="services" className="section-shell">
-      <p className="eyebrow">Services & consulting</p>
-      <h2 className="section-title mt-3">Practical help. A clear next step.</h2>
-      <p className="section-intro">
+      <h2 className="section-title text-center">
+        <span className="text-gradient-primary">Services</span> & Consulting
+      </h2>
+      <p className="section-intro mx-auto text-center">
         You don't need to know which tool you need. Start with what you want to
         do or what could work better.
       </p>
-      <div className="mt-8 grid gap-5 lg:grid-cols-3">
+      <div className="mt-12 grid gap-8 lg:grid-cols-3">
         {services.map((s) => (
           <article
             key={s.title}
-            className="flex flex-col rounded-2xl border border-border bg-card/60 p-6"
+            className="project-card flex flex-col rounded-2xl p-6 sm:p-8"
           >
-            <s.icon className="h-6 w-6 text-primary" aria-hidden="true" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/15">
+              <s.icon className="h-6 w-6 text-primary" aria-hidden="true" />
+            </div>
             <h3 className="mt-5 text-xl font-semibold">{s.title}</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               {s.copy}

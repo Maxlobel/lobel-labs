@@ -4,7 +4,7 @@ export default function Privacy() {
   return (
     <>
       <Navigation />
-      <main id="main" className="section-shell max-w-3xl">
+      <main id="main" className="section-shell pt-28 sm:pt-32 max-w-3xl">
         <h1 className="text-4xl font-bold">Privacy</h1>
         <div className="mt-8 space-y-6 leading-relaxed text-muted-foreground">
           <p>

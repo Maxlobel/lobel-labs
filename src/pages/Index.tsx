@@ -1,6 +1,9 @@
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
+import GlobalGlow from "@/components/GlobalGlow";
+import AboutSection, {
+  ToolsTechnologiesSection,
+} from "@/components/AboutSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import ServicesSection from "@/components/ServicesSection";
 import InquirySection from "@/components/InquirySection";
@@ -11,12 +14,14 @@ import Footer from "@/components/Footer";
 export default function Index() {
   return (
     <>
+      <GlobalGlow />
       <Navigation />
       <main id="main">
         <HeroSection />
-        <ServicesSection />
-        <ProjectsSection />
         <AboutSection />
+        <ToolsTechnologiesSection />
+        <ProjectsSection />
+        <ServicesSection />
         <InquirySection />
         <Testimonials />
         <NoteSection />

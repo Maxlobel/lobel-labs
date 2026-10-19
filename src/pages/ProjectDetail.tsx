@@ -11,7 +11,7 @@ export default function ProjectDetail() {
   return (
     <>
       <Navigation />
-      <main id="main" className="section-shell max-w-4xl">
+      <main id="main" className="section-shell pt-28 sm:pt-32 max-w-4xl">
         <a href="/#projects" className="text-sm text-primary">
           Back to selected work
         </a>
