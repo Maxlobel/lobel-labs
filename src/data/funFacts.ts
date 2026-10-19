@@ -50,16 +50,8 @@ export const funFacts = [
     text: "I own a DJI Mavic 2. My interest in technology extends beyond software.",
   },
   {
-    id: "used-golf-balls",
-    text: "I buy used Pro V1 golf balls. Golf is a good place to appreciate both performance and value.",
-  },
-  {
     id: "travel",
     text: "Travel and music are two more interests competing with the next project idea.",
-  },
-  {
-    id: "file-combining",
-    text: "A request to combine files became ComboGuard, a deeper project about making reporting data consistent and trustworthy.",
   },
   {
     id: "ai-friends",

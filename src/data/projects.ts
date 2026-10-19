@@ -35,21 +35,6 @@ export const projects: Project[] = [
     href: "/projects/apres-boston/",
   },
   {
-    slug: "comboguard",
-    title: "ComboGuard",
-    category: "Professional work · Data operations",
-    status: "In progress",
-    summary:
-      "A reporting workflow for combining and standardizing files with different structures.",
-    problem:
-      "Combining source files is only part of the job. Reporting also depends on consistent fields, cleaning rules, and trustworthy outputs.",
-    contribution:
-      "Developing a repeatable workflow for heterogeneous files, with cleaning and overwrite rules that support downstream reporting.",
-    current:
-      "Internal work in development and refinement. This overview excludes client data and proprietary implementation details.",
-    tools: ["Python", "Data validation", "Reporting"],
-  },
-  {
     slug: "casting-support",
     title: "Casting business technical support",
     category: "Client work · Websites & operations",
