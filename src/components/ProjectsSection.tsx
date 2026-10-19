@@ -1,189 +1,96 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  ArrowUpRight,
+  Mountain,
+  Database,
+  Code2,
+  Compass,
+  Github,
+} from "lucide-react";
+import { projects } from "@/data/projects";
+import { site } from "@/lib/site";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github, Bot, Film, Calculator, Settings, Utensils, Target, Mountain } from "lucide-react";
-
-const ProjectsSection = () => {
-  const projects = [
-    {
-      title: "Aprés Boston",
-      description: "We make the slopes accessible and the après legendary. A skiing community platform connecting Boston skiers with mountain adventures and legendary après-ski experiences.",
-      icon: Mountain,
-      tags: ["Community", "Skiing", "Social", "Boston", "Adventure"],
-      status: "Active",
-      color: "primary",
-      demoUrl: "https://apres-boston.vercel.app"
-    },
-    {
-      title: "RoleVista Career Platform",
-      description: "AI-powered career assessment platform that helps users discover their ideal career path through personalized assessments and job recommendations",
-      icon: Target,
-      tags: ["React", "Node.js", "Redux", "SQLite", "AI Assessment", "Full-Stack"],
-      status: "Complete",
-      color: "primary",
-      demoUrl: "https://rolevista.vercel.app",
-      githubUrl: "https://github.com/Maxlobel/rolevista"
-    },
-    {
-      title: "AI Job Agent",
-      description: "Automated job application system that intelligently matches and applies to relevant positions",
-      icon: Bot,
-      tags: ["AI", "Automation", "Python", "Make.com"],
-      status: "Active",
-      color: "primary"
-    },
-    {
-      title: "Telegram-to-Short Film AI",
-      description: "Transform simple prompts into complete scripts and scenes automatically",
-      icon: Film,
-      tags: ["GPT", "Content Creation", "Automation"],
-      status: "Beta",
-      color: "secondary"
-    },
-    {
-      title: "Fantasy Football Tracker",
-      description: "Google Sheets integration with win percentage calculator and advanced analytics",
-      icon: Calculator,
-      tags: ["Google Sheets", "Analytics", "Sports"],
-      status: "Complete",
-      color: "primary"
-    },
-    {
-      title: "Sushi Experience Tracker",
-      description: "Physical + digital omakase rating system with location and experience tracking",
-      icon: Utensils,
-      tags: ["Lifestyle", "Database", "Personal"],
-      status: "In Progress",
-      color: "primary"
-    }
-  ];
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "Active":
-      case "Production":
-        return "bg-green-500/20 text-green-400 border-green-500/30";
-      case "Beta":
-      case "In Progress":
-        return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
-      case "Complete":
-        return "bg-blue-500/20 text-blue-400 border-blue-500/30";
-      default:
-        return "bg-muted/20 text-muted-foreground border-muted/30";
-    }
-  };
-
+const icons = [Mountain, Database, Code2, Compass];
+export default function ProjectsSection() {
   return (
-    <section id="projects" className="py-20 bg-gradient-to-b from-background/80 to-background">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Featured <span className="text-gradient-secondary">Projects</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              A collection of AI-powered tools, automation systems, and creative experiments
-            </p>
-          </div>
-
-          {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, index) => (
-              <Card key={index} className="project-card h-full group">
-                <CardHeader className="space-y-4">
-                  <div className="flex items-start justify-between">
-                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                      project.color === 'primary' ? 'bg-primary/20 text-primary' : 'bg-secondary/20 text-secondary'
-                    }`}>
-                      <project.icon size={24} />
-                    </div>
-                    <Badge className={getStatusColor(project.status)}>
-                      {project.status}
-                    </Badge>
+    <section
+      id="projects"
+      className="bg-gradient-to-b from-background to-primary/5"
+    >
+      <div className="section-shell">
+        <div className="mb-12 text-center sm:mb-16">
+          <h2 className="section-title">
+            Featured <span className="text-gradient-primary">Projects</span>
+          </h2>
+          <p className="section-intro mx-auto">
+            A mix of things I've built for work, for clients, and just because I
+            wanted to see what was possible.
+          </p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
+          {projects.map((p, i) => {
+            const Icon = icons[i % icons.length];
+            return (
+              <article
+                key={p.slug}
+                className="project-card group flex flex-col rounded-2xl p-6 sm:p-8"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div
+                    className={`flex h-12 w-12 items-center justify-center rounded-xl ${i % 2 ? "bg-secondary/15 text-secondary" : "bg-primary/15 text-primary"}`}
+                  >
+                    <Icon className="h-6 w-6" aria-hidden="true" />
                   </div>
-                  
-                  <div>
-                    <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors">
-                      {project.title}
-                    </CardTitle>
-                    <CardDescription className="text-muted-foreground leading-relaxed">
-                      {project.description}
-                    </CardDescription>
-                  </div>
-                </CardHeader>
-
-                <CardContent className="space-y-4">
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, tagIndex) => (
-                      <Badge 
-                        key={tagIndex} 
-                        variant="outline" 
-                        className="text-xs bg-muted/50 border-border/50"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-2 pt-2">
-                    {project.demoUrl ? (
-                      <Button 
-                        size="sm" 
-                        className="flex-1 bg-primary/10 hover:bg-primary/20 text-primary border-primary/30"
-                        onClick={() => window.open(project.demoUrl, '_blank')}
-                      >
-                        <ExternalLink size={14} className="mr-2" />
-                        Demo
-                      </Button>
-                    ) : (
-                      <Button 
-                        size="sm" 
-                        className="flex-1 bg-muted/30 text-muted-foreground cursor-not-allowed"
-                        disabled
-                      >
-                        <ExternalLink size={14} className="mr-2" />
-                        Demo
-                      </Button>
-                    )}
-                    {project.githubUrl ? (
-                      <Button 
-                        size="sm" 
-                        variant="outline" 
-                        className="bg-muted/20 border-border/50 hover:bg-muted/30"
-                        onClick={() => window.open(project.githubUrl, '_blank')}
-                      >
-                        <Github size={14} />
-                      </Button>
-                    ) : (
-                      <Button 
-                        size="sm" 
-                        variant="outline" 
-                        className="bg-muted/30 border-muted/50 text-muted-foreground cursor-not-allowed"
-                        disabled
-                      >
-                        <Github size={14} />
-                      </Button>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* View More Projects */}
-          <div className="text-center mt-12">
-            <Button className="btn-hero text-lg px-8 py-6">
-              View All Projects on GitHub
-              <ExternalLink className="ml-2" size={20} />
-            </Button>
-          </div>
+                  <span
+                    className={`rounded-full border px-3 py-1 text-xs ${p.status === "Complete" ? "border-emerald-400/30 bg-emerald-400/10 text-emerald-300" : p.status === "Beta" ? "border-secondary/30 bg-secondary/10 text-secondary" : "border-primary/30 bg-primary/10 text-primary"}`}
+                  >
+                    {p.status}
+                  </span>
+                </div>
+                <h3 className="mt-6 text-2xl font-semibold">{p.title}</h3>
+                <p className="mt-2 text-xs text-muted-foreground">
+                  {p.category}
+                </p>
+                <p className="mt-4 leading-relaxed text-muted-foreground">
+                  {p.summary}
+                </p>
+                <ul className="mb-6 mt-5 flex flex-wrap gap-2">
+                  {p.tools.map((tool) => (
+                    <li
+                      key={tool}
+                      className="rounded-full border border-border/70 bg-muted/30 px-3 py-1 text-xs text-muted-foreground"
+                    >
+                      {tool}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-auto border-t border-border/60 pt-5">
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="w-full border-primary/25 text-primary hover:bg-primary/10"
+                  >
+                    <a href={p.href || `/projects/${p.slug}`}>
+                      {p.href ? "Open Après Boston" : "Explore the project"}
+                      <ArrowUpRight
+                        className="ml-2 h-4 w-4"
+                        aria-hidden="true"
+                      />
+                    </a>
+                  </Button>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+        <div className="mt-10 text-center">
+          <Button asChild variant="outline" className="border-primary/30">
+            <a href={site.github} target="_blank" rel="noopener noreferrer">
+              <Github className="mr-2 h-4 w-4" aria-hidden="true" />
+              View public projects on GitHub
+            </a>
+          </Button>
         </div>
       </div>
     </section>
   );
-};
-
-export default ProjectsSection;
+}

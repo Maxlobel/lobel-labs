@@ -74,7 +74,7 @@ html {
 @layer components {
   /* Hero button variants */
   .btn-hero {
-    @apply bg-primary/20 text-primary border border-primary/30 hover:bg-primary hover:text-primary-foreground backdrop-blur-sm transition-all duration-300 hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)];
+    @apply bg-primary/20 text-primary border border-primary/30 hover:bg-primary hover:text-primary-foreground backdrop-blur-sm transition-colors duration-200;
   }
   
   .btn-secondary {
@@ -83,7 +83,7 @@ html {
 
   /* Project card effects */
   .project-card {
-    @apply transition-all duration-300 hover:scale-105 cursor-pointer bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/30;
+    @apply transition-all duration-300  bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/30;
   }
   
   .project-card:hover {
@@ -148,4 +148,31 @@ html {
   .badge {
     @apply inline-block px-3 py-1 rounded-full bg-muted/20 border border-border/30 text-sm font-medium;
   }
+}
+@layer components {
+  .section-shell { @apply mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20; }
+  .section-title { @apply text-4xl font-bold leading-tight tracking-tight md:text-5xl; }
+  .section-intro { @apply mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground; }
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[.15em] text-primary; }
+}
+[id] { scroll-margin-top: 5.5rem; }
+a, button, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid hsl(var(--primary)); outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+/* The portfolio keeps the original ambient opening and blue/gold identity. */
+.hero-enter { animation: portfolio-enter .85s cubic-bezier(.2,.65,.3,1) both; }
+.hero-enter-name { animation-delay: .1s; }
+.hero-enter-copy { animation-delay: .2s; }
+.hero-enter-actions { animation-delay: .3s; }
+.hero-ambient { animation: portfolio-ambient 5s ease-in-out infinite; }
+.hero-ambient-gold { animation-delay: 1.5s; }
+@keyframes portfolio-enter { from { opacity: 0; translate: 0 16px; } to { opacity: 1; translate: 0 0; } }
+@keyframes portfolio-ambient { 0%,100% { opacity: .5; scale: 1; } 50% { opacity: 1; scale: 1.08; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter, .hero-ambient, .lightbulb-apple-glow { animation: none; }
+  .cursor-glow { display: none; }
 }
