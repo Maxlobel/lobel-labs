@@ -9,6 +9,8 @@ import PageMetadata from "@/components/PageMetadata";
 const Lab = lazy(() => import("./pages/Lab"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
+const Fieldnotes = lazy(() => import("./pages/Fieldnotes"));
+const FieldnoteDetail = lazy(() => import("./pages/FieldnoteDetail"));
 export default function App() {
   return (
     <TooltipProvider>
@@ -26,6 +28,8 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/lab" element={<Lab />} />
+            <Route path="/projects/fieldnotes" element={<Fieldnotes />} />
+            <Route path="/projects/fieldnotes/:slug" element={<FieldnoteDetail />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/projects/:slug" element={<ProjectDetail />} />
             <Route path="*" element={<NotFound />} />

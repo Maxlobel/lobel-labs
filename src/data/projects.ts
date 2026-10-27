@@ -16,6 +16,7 @@ export type Project = {
   tools: string[];
   href?: string;
   github?: string;
+  cta?: string;
 };
 export const projects: Project[] = [
   {
@@ -33,6 +34,24 @@ export const projects: Project[] = [
       "A working beta with sign in and community features. Testing and refinement are ongoing.",
     tools: ["React", "TypeScript", "Supabase"],
     href: "/projects/apres-boston/",
+    cta: "Open Après Boston",
+  },
+  {
+    slug: "fieldnotes",
+    title: "Fieldnotes",
+    category: "Personal project · Visual storytelling",
+    status: "In progress",
+    summary:
+      "A visual notebook for original investigations across data, cities, sports, AI, and whatever sparks a question.",
+    problem:
+      "Interesting research, analysis, and creative work can end up scattered across platforms without a consistent home.",
+    contribution:
+      "Created a repeatable visual identity, editorial index, and story templates with a path toward an approval based publishing workflow.",
+    current:
+      "The experience is in concept preview. The example investigations are research proposals, not completed findings.",
+    tools: ["React", "TypeScript", "SVG"],
+    href: "/projects/fieldnotes",
+    cta: "Explore Fieldnotes",
   },
   {
     slug: "casting-support",
