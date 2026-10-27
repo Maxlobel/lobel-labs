@@ -11,7 +11,7 @@ export default function FieldnoteDetail() {
   const { slug } = useParams();
   const note = getFieldnote(slug || "");
   useEffect(() => { window.scrollTo({ top: 0, behavior: "instant" }); }, [slug]);
-  if (!note) return <Navigate to="/fieldnotes" replace />;
+  if (!note) return <Navigate to="/projects/fieldnotes" replace />;
   const next = fieldnotes[(fieldnotes.findIndex((item) => item.slug === note.slug) + 1) % fieldnotes.length];
 
   return (
@@ -19,7 +19,7 @@ export default function FieldnoteDetail() {
       <Navigation />
       <main id="main" className="fieldnotes-page fn-detail pt-16">
         <div className="fn-container fn-detail-top">
-          <Link className="fn-back" to="/fieldnotes"><ArrowLeft size={16} aria-hidden="true" /> BACK TO ALL FIELDNOTES</Link>
+          <Link className="fn-back" to="/projects/fieldnotes"><ArrowLeft size={16} aria-hidden="true" /> BACK TO ALL FIELDNOTES</Link>
           <span>NO. {note.number} / {note.category.toUpperCase()}</span>
         </div>
         <article className="fn-container" aria-labelledby="note-title">
@@ -42,7 +42,7 @@ export default function FieldnoteDetail() {
         </article>
         <section className="fn-container fn-next" aria-label="Next fieldnote">
           <div><p className="fn-kicker">KEEP EXPLORING</p><h2>Follow another question.</h2></div>
-          <Link to={`/fieldnotes/${next.slug}`} className="fn-next-link"><span>{next.category.toUpperCase()} / NO. {next.number}</span><strong>{next.headline}</strong><ArrowUpRight size={20} aria-hidden="true" /></Link>
+          <Link to={`/projects/fieldnotes/${next.slug}`} className="fn-next-link"><span>{next.category.toUpperCase()} / NO. {next.number}</span><strong>{next.headline}</strong><ArrowUpRight size={20} aria-hidden="true" /></Link>
         </section>
       </main>
       <Footer />

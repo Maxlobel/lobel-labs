@@ -7,7 +7,6 @@ export default function Navigation() {
   const links = [
     { label: "About", href: "/#about" },
     { label: "Projects", href: "/#projects" },
-    { label: "Fieldnotes", href: "/fieldnotes" },
     { label: "Services", href: "/#services" },
     { label: "Private lab", href: "/lab" },
   ];

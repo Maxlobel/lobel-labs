@@ -28,8 +28,8 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/lab" element={<Lab />} />
-            <Route path="/fieldnotes" element={<Fieldnotes />} />
-            <Route path="/fieldnotes/:slug" element={<FieldnoteDetail />} />
+            <Route path="/projects/fieldnotes" element={<Fieldnotes />} />
+            <Route path="/projects/fieldnotes/:slug" element={<FieldnoteDetail />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/projects/:slug" element={<ProjectDetail />} />
             <Route path="*" element={<NotFound />} />

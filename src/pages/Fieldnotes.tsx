@@ -16,6 +16,7 @@ export default function Fieldnotes() {
       <Navigation />
       <main id="main" className="fieldnotes-page min-h-screen pt-16">
         <section className="fn-container fn-opening" aria-labelledby="fieldnotes-title">
+          <Link to="/#projects" className="fn-parent-link">← SELECTED PROJECTS / FIELDNOTES</Link>
           <div className="fn-opening-eyebrow"><span className="fn-dot" /> THE PUBLIC NOTEBOOK OF MAX LOBEL <span className="fn-edition">VOL. 01 / A WORK IN PROGRESS</span></div>
           <div className="fn-opening-content">
             <div>
@@ -43,7 +44,7 @@ export default function Fieldnotes() {
 
           {featured && (
             <div className="fn-results" aria-live="polite">
-              <Link to={`/fieldnotes/${featured.slug}`} className="fn-featured fn-link-card">
+              <Link to={`/projects/fieldnotes/${featured.slug}`} className="fn-featured fn-link-card">
                 <div className="fn-featured-art"><FieldnotePoster note={featured} wide /></div>
                 <div className="fn-featured-copy">
                   <div className="fn-card-meta"><span>EDITORIAL CONCEPT</span><span>NO. {featured.number}</span></div>
@@ -55,7 +56,7 @@ export default function Fieldnotes() {
               </Link>
               <div className="fn-card-grid">
                 {rest.map((note) => (
-                  <Link to={`/fieldnotes/${note.slug}`} key={note.slug} className="fn-card fn-link-card">
+                  <Link to={`/projects/fieldnotes/${note.slug}`} key={note.slug} className="fn-card fn-link-card">
                     <FieldnotePoster note={note} />
                     <div className="fn-card-content">
                       <div className="fn-card-meta"><span>{note.category.toUpperCase()} / CONCEPT</span><span>NO. {note.number}</span></div>

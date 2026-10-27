@@ -6,11 +6,11 @@ export default function PageMetadata() {
   const { pathname } = useLocation();
   useEffect(() => {
     const project = projects.find((p) => pathname === `/projects/${p.slug}`);
-    const note = pathname.startsWith("/fieldnotes/") ? getFieldnote(pathname.slice("/fieldnotes/".length)) : undefined;
+    const note = pathname.startsWith("/projects/fieldnotes/") ? getFieldnote(pathname.slice("/projects/fieldnotes/".length)) : undefined;
     const title =
       pathname === "/lab"
         ? "Private lab | Max Lobel"
-        : pathname === "/fieldnotes"
+        : pathname === "/projects/fieldnotes"
           ? "Fieldnotes | Max Lobel"
           : note
             ? `${note.headline} | Fieldnotes by Max Lobel`
@@ -32,7 +32,7 @@ export default function PageMetadata() {
         pathname === "/lab" || Boolean(note?.status === "concept") ? "noindex, nofollow" : "index, follow";
     const description =
       note?.description ||
-      (pathname === "/fieldnotes" ? "A visual notebook of questions, investigations, and creative work across data, AI, sports, cities, and systems from Max Lobel." : undefined) ||
+      (pathname === "/projects/fieldnotes" ? "A visual notebook of questions, investigations, and creative work across data, AI, sports, cities, and systems from Max Lobel." : undefined) ||
       project?.summary ||
       "Explore Max Lobel's projects, background, and practical work in AI, data, and automation. Based in Boston and open to consulting and collaboration.";
     document

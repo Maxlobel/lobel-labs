@@ -12,6 +12,8 @@
 .fn-muted { color: var(--fn-muted); }
 .fn-period { color: var(--fn-cyan); }
 .fn-dot { display: inline-block; flex: 0 0 auto; width: 7px; height: 7px; background: var(--fn-cyan); border-radius: 50%; box-shadow: 0 0 12px rgba(77,224,241,.55); }
+.fn-parent-link { align-self: flex-start; display: inline-flex; align-items: center; margin-top: -42px; color: #81b9c2; font-size: 10px; font-weight: 800; letter-spacing: .17em; }
+.fn-parent-link:hover { color: white; }
 .fn-opening {
   position: relative; min-height: 640px; display: flex; flex-direction: column; justify-content: space-between;
   padding-block: 75px 30px; isolation: isolate;
@@ -132,6 +134,7 @@
 @media (max-width: 700px) {
   .fn-container { width: min(100% - 32px, 1260px); }
   .fn-opening { min-height: 650px; padding-top: 54px; }
+  .fn-parent-link { margin-top: -29px; }
   .fn-edition { display: none; }
   .fn-opening-content { display: block; padding-block: 60px 48px; }
   .fn-display { font-size: clamp(6.5rem, 22vw, 11rem); }

@@ -1,6 +1,6 @@
 # Fieldnotes publication system
 
-`/fieldnotes` is the future public editorial home for Max Lobel's work across data, AI, systems, sports, cities, and culture. The first implementation is an editorial **concept preview**, not six completed research articles.
+`/projects/fieldnotes` is the future public editorial home for Max Lobel's work across data, AI, systems, sports, cities, and culture. It appears as a project in the main site's Featured Projects section, not a separate top-level site or navigation category. The first implementation is an editorial **concept preview**, not six completed research articles.
 
 ## Editorial standard
 

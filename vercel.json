@@ -19,7 +19,7 @@
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     },
     {
-      "source": "/fieldnotes/:slug",
+      "source": "/projects/fieldnotes/:slug",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     },
     {

@@ -70,7 +70,7 @@ export default function ProjectsSection() {
                     className="w-full border-primary/25 text-primary hover:bg-primary/10"
                   >
                     <a href={p.href || `/projects/${p.slug}`}>
-                      {p.href ? "Open Après Boston" : "Explore the project"}
+                      {p.cta || "Explore the project"}
                       <ArrowUpRight
                         className="ml-2 h-4 w-4"
                         aria-hidden="true"
