@@ -19,6 +19,10 @@
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     },
     {
+      "source": "/fieldnotes/:slug",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
       "source": "/api/lab",
       "headers": [{ "key": "Cache-Control", "value": "private, no-store" }]
     },
