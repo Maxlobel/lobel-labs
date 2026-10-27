@@ -36,6 +36,7 @@ export default function Footer() {
         <div className="mt-7 flex flex-wrap justify-between gap-3 border-t border-border pt-5 text-xs text-muted-foreground">
           <p>© {new Date().getFullYear()} Max Lobel</p>
           <div className="flex gap-5">
+            <a href="/fieldnotes">Fieldnotes</a>
             <a href="/privacy">Privacy</a>
             <a href="/lab">Private lab</a>
           </div>
