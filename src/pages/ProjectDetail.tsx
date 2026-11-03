@@ -37,6 +37,17 @@ export default function ProjectDetail() {
           ))}
         </div>
         <div className="mt-10 flex flex-wrap gap-3">
+          {project.demoHref && (
+            <Button asChild variant="outline">
+              <a
+                href={project.demoHref}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open interactive demo
+              </a>
+            </Button>
+          )}
           {project.github && (
             <Button asChild variant="outline">
               <a
@@ -52,6 +63,11 @@ export default function ProjectDetail() {
             <a href="/#request-info">Discuss a similar challenge</a>
           </Button>
         </div>
+        {project.slug === "clockmiester" && (
+          <p className="mt-3 text-sm text-muted-foreground">
+            The interactive demo currently requires an invitation to view.
+          </p>
+        )}
       </main>
       <Footer />
     </>
