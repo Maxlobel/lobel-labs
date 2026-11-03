@@ -80,6 +80,7 @@ export const projects: Project[] = [
     current:
       "Interactive visual demo complete. Exact CAD geometry, verified manufacturing color options, live pricing, and automated part ordering are planned but not connected yet.",
     tools: ["Interactive prototype", "Product visualization", "Color customization"],
-    demoHref: "https://clockmiester-studio.aquaferry1.chatgpt.site",
+    href: "/projects/clockmeister",
+    demoHref: "/projects/clockmeister",
   },
 ];

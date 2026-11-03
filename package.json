@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && npm run build:clockmeister",
+    "build:clockmeister": "vite build --config clockmeister/vite.config.js",
+    "dev:clockmeister": "vite --config clockmeister/vite.config.js",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -59,6 +61,7 @@
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
+    "three": "^0.180.0",
     "vaul": "^0.9.3",
     "zod": "^3.23.8"
   },
