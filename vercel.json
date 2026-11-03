@@ -9,7 +9,15 @@
       "destination": "/projects/apres-boston/index.html"
     },
     {
-      "source": "/((?!api/|assets/|projects/apres-boston/).*)",
+      "source": "/projects/clockmeister",
+      "destination": "/projects/clockmeister/index.html"
+    },
+    {
+      "source": "/projects/clockmeister/:path*",
+      "destination": "/projects/clockmeister/index.html"
+    },
+    {
+      "source": "/((?!api/|assets/|projects/apres-boston/|projects/clockmeister/).*)",
       "destination": "/index.html"
     }
   ],
