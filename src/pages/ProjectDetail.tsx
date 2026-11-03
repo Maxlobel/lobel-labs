@@ -63,11 +63,6 @@ export default function ProjectDetail() {
             <a href="/#request-info">Discuss a similar challenge</a>
           </Button>
         </div>
-        {project.slug === "clockmiester" && (
-          <p className="mt-3 text-sm text-muted-foreground">
-            The interactive demo currently requires an invitation to view.
-          </p>
-        )}
       </main>
       <Footer />
     </>
