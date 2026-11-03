@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="Max Lobel ML monogram">
   <title>Max Lobel</title>
   <rect width="128" height="128" rx="26" fill="#08121f"/>
-  <path d="M17 89V39h10l20 27 20-27h10v50H65V58L47 82 29 58v31H17Z" fill="#36c9f5"/>
-  <path d="M84 39h11v39h22v11H84V39Z" fill="#f5f8fc"/>
+  <path d="M17 89V39h10l20 27 20-27h10v50H65V58L47 82 29 58v31H17Z" fill="#33ccff"/>
+  <path d="M84 39h11v39h22v11H84V39Z" fill="#ffd24d"/>
 </svg>
