@@ -37,6 +37,17 @@ export default function ProjectDetail() {
           ))}
         </div>
         <div className="mt-10 flex flex-wrap gap-3">
+          {project.demoHref && (
+            <Button asChild variant="outline">
+              <a
+                href={project.demoHref}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open interactive demo
+              </a>
+            </Button>
+          )}
           {project.github && (
             <Button asChild variant="outline">
               <a

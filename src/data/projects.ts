@@ -15,6 +15,7 @@ export type Project = {
   current: string;
   tools: string[];
   href?: string;
+  demoHref?: string;
   github?: string;
 };
 export const projects: Project[] = [
@@ -64,5 +65,21 @@ export const projects: Project[] = [
       "Development project. The source is available; it is not presented here as a finished commercial service.",
     tools: ["React", "Node.js", "SQLite"],
     github: "https://github.com/Maxlobel/rolevista",
+  },
+  {
+    slug: "clockmiester",
+    title: "ClockMiester",
+    category: "Collaboration · Product configurator",
+    status: "Beta",
+    summary:
+      "An interactive color configurator for a handmade, 3D printed mechanical clock with exposed gears and a pendulum.",
+    problem:
+      "Customizing a clock is difficult when buyers cannot see how their chosen colors work together across individual parts.",
+    contribution:
+      "Designed and built an interactive concept that lets people select clock components and preview color combinations, using a photo of the physical clock as a visual reference.",
+    current:
+      "Interactive visual demo complete. Exact CAD geometry, verified manufacturing color options, live pricing, and automated part ordering are planned but not connected yet.",
+    tools: ["Interactive prototype", "Product visualization", "Color customization"],
+    demoHref: "https://clockmiester-studio.aquaferry1.chatgpt.site",
   },
 ];

@@ -3,13 +3,13 @@ import {
   Mountain,
   Database,
   Code2,
-  Compass,
+  Clock3,
   Github,
 } from "lucide-react";
 import { projects } from "@/data/projects";
 import { site } from "@/lib/site";
 import { Button } from "@/components/ui/button";
-const icons = [Mountain, Database, Code2, Compass];
+const icons = [Mountain, Database, Code2, Clock3];
 export default function ProjectsSection() {
   return (
     <section
