@@ -5,7 +5,6 @@ import AboutSection, {
   ToolsTechnologiesSection,
 } from "@/components/AboutSection";
 import ProjectsSection from "@/components/ProjectsSection";
-import ServicesSection from "@/components/ServicesSection";
 import InquirySection from "@/components/InquirySection";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
@@ -19,7 +18,6 @@ export default function Index() {
         <AboutSection />
         <ToolsTechnologiesSection />
         <ProjectsSection />
-        <ServicesSection />
         <InquirySection />
         <Testimonials />
       </main>
